@@ -2973,7 +2973,7 @@ input[type=button].btn-block {
   margin-left: 0;
 }
 
-.dropdown-menu {
+.dropdown-student {
   position: absolute;
   top: 100%;
   left: 0;
@@ -2993,61 +2993,61 @@ input[type=button].btn-block {
   border-radius: 0.25rem;
 }
 
-.dropdown-menu-left {
+.dropdown-student-left {
   right: auto;
   left: 0;
 }
 
-.dropdown-menu-right {
+.dropdown-student-right {
   right: 0;
   left: auto;
 }
 
 @media (min-width: 576px) {
-  .dropdown-menu-sm-left {
+  .dropdown-student-sm-left {
     right: auto;
     left: 0;
   }
 
-  .dropdown-menu-sm-right {
+  .dropdown-student-sm-right {
     right: 0;
     left: auto;
   }
 }
 @media (min-width: 768px) {
-  .dropdown-menu-md-left {
+  .dropdown-student-md-left {
     right: auto;
     left: 0;
   }
 
-  .dropdown-menu-md-right {
+  .dropdown-student-md-right {
     right: 0;
     left: auto;
   }
 }
 @media (min-width: 992px) {
-  .dropdown-menu-lg-left {
+  .dropdown-student-lg-left {
     right: auto;
     left: 0;
   }
 
-  .dropdown-menu-lg-right {
+  .dropdown-student-lg-right {
     right: 0;
     left: auto;
   }
 }
 @media (min-width: 1200px) {
-  .dropdown-menu-xl-left {
+  .dropdown-student-xl-left {
     right: auto;
     left: 0;
   }
 
-  .dropdown-menu-xl-right {
+  .dropdown-student-xl-right {
     right: 0;
     left: auto;
   }
 }
-.dropup .dropdown-menu {
+.dropup .dropdown-student {
   top: auto;
   bottom: 100%;
   margin-top: 0;
@@ -3067,7 +3067,7 @@ input[type=button].btn-block {
   margin-left: 0;
 }
 
-.dropright .dropdown-menu {
+.dropright .dropdown-student {
   top: 0;
   right: auto;
   left: 100%;
@@ -3091,7 +3091,7 @@ input[type=button].btn-block {
   vertical-align: 0;
 }
 
-.dropleft .dropdown-menu {
+.dropleft .dropdown-student {
   top: 0;
   right: 100%;
   left: auto;
@@ -3123,7 +3123,7 @@ input[type=button].btn-block {
   vertical-align: 0;
 }
 
-.dropdown-menu[x-placement^=top], .dropdown-menu[x-placement^=right], .dropdown-menu[x-placement^=bottom], .dropdown-menu[x-placement^=left] {
+.dropdown-student[x-placement^=top], .dropdown-student[x-placement^=right], .dropdown-student[x-placement^=bottom], .dropdown-student[x-placement^=left] {
   right: auto;
   bottom: auto;
 }
@@ -3163,7 +3163,7 @@ input[type=button].btn-block {
   background-color: transparent;
 }
 
-.dropdown-menu.show {
+.dropdown-student.show {
   display: block;
 }
 
@@ -3918,7 +3918,7 @@ input[type=button].btn-block {
   background-color: #f8fafc;
   border-color: #dee2e6 #dee2e6 #f8fafc;
 }
-.nav-tabs .dropdown-menu {
+.nav-tabs .dropdown-student {
   margin-top: -1px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -3996,7 +3996,7 @@ input[type=button].btn-block {
   padding-right: 0;
   padding-left: 0;
 }
-.navbar-nav .dropdown-menu {
+.navbar-nav .dropdown-student {
   position: static;
   float: none;
 }
@@ -4058,7 +4058,7 @@ input[type=button].btn-block {
   .navbar-expand-sm .navbar-nav {
     flex-direction: row;
   }
-  .navbar-expand-sm .navbar-nav .dropdown-menu {
+  .navbar-expand-sm .navbar-nav .dropdown-student {
     position: absolute;
   }
   .navbar-expand-sm .navbar-nav .nav-link {
@@ -4103,7 +4103,7 @@ input[type=button].btn-block {
   .navbar-expand-md .navbar-nav {
     flex-direction: row;
   }
-  .navbar-expand-md .navbar-nav .dropdown-menu {
+  .navbar-expand-md .navbar-nav .dropdown-student {
     position: absolute;
   }
   .navbar-expand-md .navbar-nav .nav-link {
@@ -4148,7 +4148,7 @@ input[type=button].btn-block {
   .navbar-expand-lg .navbar-nav {
     flex-direction: row;
   }
-  .navbar-expand-lg .navbar-nav .dropdown-menu {
+  .navbar-expand-lg .navbar-nav .dropdown-student {
     position: absolute;
   }
   .navbar-expand-lg .navbar-nav .nav-link {
@@ -4193,7 +4193,7 @@ input[type=button].btn-block {
   .navbar-expand-xl .navbar-nav {
     flex-direction: row;
   }
-  .navbar-expand-xl .navbar-nav .dropdown-menu {
+  .navbar-expand-xl .navbar-nav .dropdown-student {
     position: absolute;
   }
   .navbar-expand-xl .navbar-nav .nav-link {
@@ -4235,7 +4235,7 @@ input[type=button].btn-block {
 .navbar-expand .navbar-nav {
   flex-direction: row;
 }
-.navbar-expand .navbar-nav .dropdown-menu {
+.navbar-expand .navbar-nav .dropdown-student {
   position: absolute;
 }
 .navbar-expand .navbar-nav .nav-link {
