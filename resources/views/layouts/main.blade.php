@@ -12,7 +12,7 @@
 @yield('content')
 </main>
 <footer>
-
+++++bean++++
 </footer>
 </body>
 </html>
