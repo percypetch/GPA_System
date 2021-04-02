@@ -28,5 +28,12 @@ Route::get('/auth/logout', [LoginController::class, 'logout'])
 Route::get('/student', [StudentController::class, 'list'])
 ->name('student-list');
 
+Route::get('/student/create', [StudentController::class, 'createForm'])
+->name('student-create-form');
+
+Route::post('/student/create', [StudentController::class, 'create'])
+->name('student-create');
+
 Route::get('/student/{student}', [StudentController::class, 'show'])
 ->name('student-view');
+

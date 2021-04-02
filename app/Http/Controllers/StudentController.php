@@ -43,4 +43,35 @@ class StudentController extends Controller
                 //'courses' => $courses
             ]);
             }
+
+        function createForm(Request $request) {
+            $this->authorize('update',Student::class);
+            
+            return view('student-create', [
+            'title' => "{$this->title} : Create",
+            ]);
+        }
+
+        function create(Request $request) {
+            $this->authorize('update',Student::class);
+
+            try 
+            {
+                $data = $request->getParsedBody();
+                $student = new Student();
+                $student->fill($data);
+                $student->save();
+
+                return redirect()->route('student-list')
+                ->with('status', "Student {$student->student_code} was created.");
+            } 
+
+            catch(\Exception $excp) 
+            {
+                return back()->withInput()->withErrors([
+                'input' => $excp->getMessage(),
+                ]);
+            }
+        
+        }
 }

@@ -12,7 +12,7 @@
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
-                            <a href="">Key in Student Data</a> 
+                            <a href="/student/create">Key in Student Data</a> 
                         </li>
                         </ul>
                 </nav>
