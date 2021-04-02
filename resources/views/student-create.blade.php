@@ -44,7 +44,7 @@
                     @endif
 
 
-                    <form action="{{ route('product-create') }}" method="post">
+                    <form action="{{ route('student-create') }}" method="post">
         @csrf
 
         <table class="tablecenter normal alignRight">
