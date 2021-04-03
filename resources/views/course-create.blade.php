@@ -40,7 +40,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="courses_code" size="10" value="{{ old('courses_code') }}" required>
+                <input type="text" name="course_code" size="10" value="{{ old('course_code') }}" required>
             </td>
         </tr>
 
@@ -52,7 +52,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="courses_name" size="50" value="{{ old('courses_name') }}" required>
+                <input type="text" name="course_name" size="50" value="{{ old('course_name') }}" required>
             </td>
         </tr>
         <tr>

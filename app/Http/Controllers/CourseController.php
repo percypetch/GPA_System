@@ -12,14 +12,14 @@ class CourseController extends Controller
 
     function list(Request $request) {
         $data = $request->getQueryParams();
-        $query = Course::orderBy('courses_code');//->withCount('shops');
+        $query = Course::orderBy('course_code');//->withCount('shops');
         $term = (key_exists('term', $data))? $data['term'] : '';
 
         foreach(preg_split('/\s+/', $term) as $word) {
             $query->where(function($innerQuery) use ($word) {
                 return $innerQuery
-                    ->where('courses_code', 'LIKE', "%{$word}%")
-                    ->orWhere('courses_name', 'LIKE', "%{$word}%")
+                    ->where('course_code', 'LIKE', "%{$word}%")
+                    ->orWhere('course_name', 'LIKE', "%{$word}%")
                     -> orWhere('credit', 'LIKE', "%{$word}%");
                 });
             }
@@ -34,8 +34,8 @@ class CourseController extends Controller
     }
 
 
-    function show($coursesCode=0,$studentCode=0) {
-        $course = Course::where('courses_code', $coursesCode)->firstOrFail();
+    function show($courseCode=0,$studentCode=0) {
+        $course = Course::where('course_code', $courseCode)->firstOrFail();
 
         return view('course-view', [
             'title' => "{$this->title} : View",
@@ -46,7 +46,7 @@ class CourseController extends Controller
         function createForm()
         {
           $this->authorize('update',Student::class);
-          $course = Course::orderBy('courses_code');
+          $course = Course::orderBy('course_code');
           return view('course-create', [
             'title' => "{$this->title} : Create",
             'course' => $course->get(),
@@ -63,7 +63,7 @@ class CourseController extends Controller
               $course->save();
         
               return redirect()->route('course-list')
-                ->with('status', "Course {$course->courses_code} was created.");
+                ->with('status', "Course {$course->course_code} was created.");
             
               }catch(\Exception $excp){
               return back()->withInput()->withErrors([

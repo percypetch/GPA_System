@@ -28,7 +28,7 @@
                     @endif
 
 
-    <form action="{{ route('course-update',['course' => $course->courses_code,]) }}" method="post">
+    <form action="{{ route('course-update',['course' => $course->courss_code,]) }}" method="post">
         @csrf
 
         <table class="tablecenter normal alignRight">
@@ -40,7 +40,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="courses_code" size="10" value="{{ old('courses_code')?? $course->courses_code }}" required>
+                <input type="text" name="course_code" size="10" value="{{ old('course_code')?? $course->course_code }}" required>
             </td>
         </tr>
 
@@ -52,7 +52,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="courses_name" size="50" value="{{ old('courses_name')?? $course->courses_name }}" required>
+                <input type="text" name="course_name" size="50" value="{{ old('course_name')?? $course->course_name }}" required>
             </td>
         </tr>
         <tr>

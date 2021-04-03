@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $course->courses_code)
+@section('title', $course->course_code)
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -11,7 +11,7 @@
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
-                            <a href="{{ route('course-update-form',['course' => $course->courses_code,]) }}">Update</a> 
+                            <a href="{{ route('course-update-form',['course' => $course->course_code,]) }}">Update</a> 
                         </li>
                         <li class="list-group-item">
                         <a href="">Delete</a>
@@ -44,8 +44,8 @@
                     @endif
 
 
-                    Code :: {{ $course->courses_code }} <br>
-                    Name :: {{ $course->courses_name }} <br>
+                    Code :: {{ $course->course_code }} <br>
+                    Name :: {{ $course->course_name }} <br>
                     Credit :: {{ $course->credit }} <br>
                     Description :: {{ $course->descriptions }} <br>
 

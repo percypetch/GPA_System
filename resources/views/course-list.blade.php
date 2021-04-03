@@ -57,10 +57,10 @@
                         @foreach($course as $row)
                         <tbody>
                             <tr>
-                            <td> <a href="{{ route('course-view', ['course' => $row->courses_code,]) }}">
-                                {{ $row->courses_code }}</a></td>
-                            <td> <a href="{{ route('course-view', ['course' => $row->courses_code,]) }}">
-                                {{ $row->courses_name }}</a></td>
+                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+                                {{ $row->course_code }}</a></td>
+                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+                                {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
                             </tr>
                         @endforeach  
