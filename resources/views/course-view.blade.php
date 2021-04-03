@@ -47,7 +47,54 @@
                     Credit :: {{ $course->credit }} <br>
                     Description :: {{ $course->descriptions }} <br>
 
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <table class="table text-center">
+                        <thead>
+                        Students
+                            <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Year</th>
+                            </tr>
+                        </thead>
+                        @foreach($students as $row)
+                        <tbody>
+                            <tr>
+                            <td> <a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
+                                {{ $row->student_code }}</a></td>
+                            <td> <a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
+                                {{ $row->student_name }}</a></td>
+                            <td>{{ $row->student_gender }}</td>
+                            <td>{{ $row->student_year }}</td>
+                            </tr>
+                        @endforeach  
+                        </tbody>
+                    </table>
 
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <table class="table text-center">
+                        <thead>
+                        Teachers
+                            <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Phone</th>
+                            </tr>
+                        </thead>
+                        @foreach($teachers as $row)
+                        <tbody>
+                            <tr>
+                            <td> <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
+                                {{ $row->teacher_code }}</a></td>
+                            <td> <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
+                                {{ $row->teacher_name }}</a></td>
+                            <td>{{ $row->teacher_gender }}</td>
+                            <td>{{ $row->teacher_phone }}</td>
+                            </tr>
+                        @endforeach  
+                        </tbody>
                     </table>
                     
                 </div>
