@@ -51,10 +51,33 @@
                     Gender ::{{ $student->student_gender }} <br>
                     Year ::{{ $student->student_year }} <br>
                     Phone contact ::{{ $student->student_phone }} <br>
-                    GPA ::{{ $student->student_gpa }} <br>
-                    Courses :: TABLE for each
-                    </table>
+                    <br>
+
+
                     
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <table class="table text-center">
+                        <thead>
+                        Courses
+                            <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Credit</th>
+                            </tr>
+                        </thead>
+                        @foreach($courses as $row)
+                        <tbody>
+                            <tr>
+                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+                                {{ $row->course_code }}</a></td>
+                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+                                {{ $row->course_name }}</a></td>
+                            <td>{{ $row->credit }}</td>
+                            </tr>
+                        @endforeach  
+                        </tbody>
+                    </table>
+                    GPA ::{{ $student->student_gpa }}
                 </div>
             </div>
         </div>

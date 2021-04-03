@@ -37,25 +37,23 @@ class StudentController extends Controller
 
         function show(Request $request,$studentCode=0,$coursesCode=0) {
             $student = Student::where('student_code', $studentCode)->firstOrFail();
-            //$courses = Courses::where('courses_code', $coursesCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $student->courses()->orderBy('course_code');
             $term = (key_exists('term', $data))? $data['term'] : '';
     
-            foreach(preg_split('/\s+/', $term) as $word) {
+            /*foreach(preg_split('/\s+/', $term) as $word) {
                 $query->where(function($innerQuery) use ($word) {
                     return $innerQuery
                         ->where('course_code', 'LIKE', "%{$word}%")
                         ->orWhere('course_name', 'LIKE', "%{$word}%")
                         ->orWhere('credit', 'LIKE', "%{$word}%");
                         });
-            }
+            }*/
             return view('student-view', [
                 'title' => "{$this->title} : View",
                 'student' => $student,
                 'term' => $term,
                 'courses' => $query->paginate(5),
-                //'courses' => $courses
             ]);
             }
 
