@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', $title)
 @section('content')
 
 <div class="container">
@@ -7,7 +7,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{$title}}
-
                 <div class="text-center">
                 <nav>
                     <br>
