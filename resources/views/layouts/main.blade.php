@@ -83,6 +83,15 @@
         </nav>
 
         <main class="py-4">
+                @if(session()->has('status'))
+                <div class="status">
+                    <span>{{ session()->get('status') }}</span>
+                </div>
+                @endif
+
+                @error('input')
+                    <div style="color:red;">{{ $message }}</div>
+                @enderror
             @yield('content')
         </main>
     </div>

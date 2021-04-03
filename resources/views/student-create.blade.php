@@ -4,24 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header ">{{$title}} {{ $student->student_code }}
-                <div class="text-center">
-                <nav>
-                    <br>
-                    <ul class="list-group list-group-horizontal " style="display: inline-flex;">
-                        <li class="list-group-item">
-                            <a href="">Update</a> 
-                        </li>
-
-                        <li class="list-group-item">
-                        <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </nav>
-                </div>
-                
-
-
+                <div class="card-header ">{{$title}}
                 </div>
 
                 <div class="card-body">
@@ -44,7 +27,7 @@
                     @endif
 
 
-                    <form action="{{ route('student-create') }}" method="post">
+    <form action="{{ route('student-create') }}" method="post">
         @csrf
 
         <table class="tablecenter normal alignRight">
@@ -56,7 +39,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="code" size="50" value="{{ old('student_code') }}">
+                <input type="text" name="student_code" size="50" value="{{ old('student_code') }}">
             </td>
         </tr>
 
@@ -68,7 +51,19 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="name" size="50" value="{{ old('student_name') }}">
+                <input type="text" name="student_name" size="50" value="{{ old('student_name') }}">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class=""><b>Phone</b></span>
+            </td>
+            <td>
+                <span class = "bluecolor">:: </span>
+            </td>
+            <td>
+                <input type="text" name="phone" size="50" value="{{ old('phone') }}">
             </td>
         </tr>
 
@@ -82,7 +77,7 @@
             <td>
                 <select id="year" name="year">
                 @for($i=1 ; $i<=4 ; $i++)
-                    <option value="$i" {{ ($student->year == old('year'))? ' selected' : '' }} >  
+                    <option value="$i">  
                        {{ $i }}
                     </option>
                 @endfor
@@ -98,8 +93,8 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-            <input type="checkbox" id="gender" name="gender" value="Male">Male </input>
-            <input type="checkbox" id="gender" name="gender" value="Female">Female</input>
+            <input type="radio" id="gender" name="gender" value="Male"> Male </input>
+            <input type="radio" id="gender" name="gender" value="Female">Female</input>
             </td>
         </tr>
 
