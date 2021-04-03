@@ -14,14 +14,12 @@
                             <a href="{{ route('course-update-form',['course' => $course->course_code,]) }}">Update</a> 
                         </li>
                         <li class="list-group-item">
-                        <a href="">Delete</a>
+                        <a href="{{ route('course-delete',['course' => $course->course_code,]) }}">Delete</a>
                         </li>
                     </ul>
                 </nav>
                 </div>
                 
-
-
                 </div>
 
                 <div class="card-body">

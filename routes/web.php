@@ -107,5 +107,7 @@ Route::get('/course/{course}/update', [CourseController::class, 'updateForm'])
 Route::post('/course/{course}/update', [CourseController::class, 'update'])
 ->name('course-update');
 
+Route::get('/course/{course}/delete', [CourseController::class, 'delete'])
+->name('course-delete');
 
 

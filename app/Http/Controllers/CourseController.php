@@ -43,67 +43,68 @@ class CourseController extends Controller
 
         ]);
         }
-        function createForm()
-        {
-          $this->authorize('update',Student::class);
-          $course = Course::orderBy('course_code');
-          return view('course-create', [
+    function createForm() {
+        $this->authorize('update',Student::class);
+        $course = Course::orderBy('course_code');
+        return view('course-create', [
             'title' => "{$this->title} : Create",
             'course' => $course->get(),
-          ]);
-        }
+        ]);
+    }
     
-        function create(Request $request)
-        {
-            try{
-              $this->authorize('update',Student::class);
-              $data = $request->getParsedBody();
-              $course = new Course();
-              $course->fill($data);
-              $course->save();
+    function create(Request $request) {
+        try{
+            $this->authorize('update',Student::class);
+            $data = $request->getParsedBody();
+            $course = new Course();
+            $course->fill($data);
+            $course->save();
         
-              return redirect()->route('course-list')
-                ->with('status', "Course {$course->course_code} was created.");
+            return redirect()->route('course-list')
+            ->with('status', "Course {$course->course_code} was created.");
             
-              }catch(\Exception $excp){
-              return back()->withInput()->withErrors([
+            }catch(\Exception $excp){
+                return back()->withInput()->withErrors([
                 'input' => $excp->getMessage(),
               ]);
             }
-        }
+    }
         
-        function updateForm($courseCode) {
-            $this->authorize('update',Student::class);
-            $course = Course::where('course_code', $courseCode)->firstOrFail();
+    function updateForm($courseCode) {
+        $this->authorize('update',Student::class);
+        $course = Course::where('course_code', $courseCode)->firstOrFail();
            
-            return view('course-update', [
-              'title' => "{$this->title} : Update",
-              'course' => $course,
+        return view('course-update', [
+            'title' => "{$this->title} : Update",
+            'course' => $course,
       
-            ]);
-        }
+        ]);
+    }
     
-        function update(Request $request, $courseCode) {
-            $this->authorize('update',Student::class);
-            try 
-            {
-                $course = Course::where('course_code', $courseCode)->FirstOrFail();
-                
-                $data = $request->getParsedBody();
-                $course->fill($data);
-                $course->save();
-            
-                return redirect()->route('course-view', [
-                    'course' => $course->course_code,
-                ])->with('status', "Course {$course->code} was updated.");
-             } 
-    
-             catch(\Exception $excp) 
-             {
-                return back()->withInput()->withErrors([
-                'input' => $excp->getMessage(),
+    function update(Request $request, $courseCode) {
+        $this->authorize('update',Student::class);
+        try{
+            $course = Course::where('course_code', $courseCode)->FirstOrFail(); 
+            $data = $request->getParsedBody();
+            $course->fill($data);
+            $course->save();
+            return redirect()->route('course-view', [
+                'course' => $course->course_code,])
+                ->with('status', "Course {$course->code} was updated.");
+            } 
+                catch(\Exception $excp) 
+        {
+            return back()->withInput()->withErrors([
+            'input' => $excp->getMessage(),
                 ]);
-            }
-    
-          }
+        }
+    }
+
+    function delete($courseCode) {
+        $this->authorize('update',Student::class);
+        $course = Course::where('course_code', $courseCode)->firstOrFail();
+        $course->delete();
+        return redirect()->route('course-list')->with('status', "Course {$course->course_code} was deleted.");
+    } 
+
 }
