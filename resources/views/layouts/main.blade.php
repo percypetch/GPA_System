@@ -34,6 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="/student">Student</a>&nbsp</li>
+                        <li><a href="/teacher">Teacher</a>&nbsp</li>
                        
                     </ul>
 
