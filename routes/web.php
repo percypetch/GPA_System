@@ -27,7 +27,7 @@ Route::post('/auth/login', [LoginController::class, 'authenticate'])
 
 Route::get('/auth/logout', [LoginController::class, 'logout'])
 ->name('logout');
-
+// -----------------------------------------------------------
 Route::get('/student', [StudentController::class, 'list'])
 ->name('student-list');
 
@@ -40,3 +40,13 @@ Route::post('/student/create', [StudentController::class, 'create'])
 Route::get('/student/{student}', [StudentController::class, 'show'])
 ->name('student-view');
 
+Route::get('/student/{student}/update', [StudentController::class, 'updateForm'])
+->name('student-update-form');
+
+Route::post('/student/{student}/update', [StudentController::class, 'update'])
+->name('student-update');
+
+Route::get('/student/{student}/delete', [StudentController::class, 'delete'])
+->name('student-delete');
+
+// -----------------------------------------------------------
