@@ -52,6 +52,7 @@
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Credit</th>
+                            <th scope="col">Number of Students</th>
                             </tr>
                         </thead>
                         @foreach($course as $row)
@@ -62,6 +63,7 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
+                            <td>$Number of Students</td>
                             </tr>
                         @endforeach  
                         </tbody>
