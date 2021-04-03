@@ -73,6 +73,7 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
+                            <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $courses->course_code,]) }}">Remove</a></td>
                             </tr>
                         @endforeach  
                         </tbody>

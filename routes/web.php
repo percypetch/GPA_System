@@ -55,8 +55,8 @@ Route::get('/student/{student}/course/add',[StudentController::class, 'addCourse
 Route::post('/student/{student}/course/add',[StudentController::class, 'addCourse'])
 ->name('student-add-course');
 
-/*Route::get('/student/{student}/course/{course}/remove',[StudentController::class, 'removeCourse'])
-->name('student-remove-course');*/
+Route::get('/student/{student}/course/{course}/remove',[StudentController::class, 'removeCourse'])
+->name('student-remove-course');
 
 // -----------------------------------------------------------
 

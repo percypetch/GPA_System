@@ -48,8 +48,8 @@
                             <td class="normal" width=400px>{{ $course->course_name }}</td>
                             <td class="normal"  width=200px>{{ $course->credit }}</td>
                             <td class="normal"width=20px >
-                                <button type="submit" name="shop" value="{{ $course->course_id }}">Add</button>
-                                <input type="hidden" name="shopCode" value="{{ $course->course_code }}">
+                                <button type="submit" name="course" value="{{ $course->id }}">Add</button>
+                                <input type="hidden" name="courseCode" value="{{ $course->course_code }}">
                             </td>
                         </tr>
                     @endforeach
