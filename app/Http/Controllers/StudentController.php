@@ -37,11 +37,11 @@ class StudentController extends Controller
 
         function show($studentCode=0,$coursesCode=0) {
             $student = Student::where('student_code', $studentCode)->firstOrFail();
-            //$courses = Courses::where('courses_code', $coursesCode)->firstOrFail();
+            
             return view('student-view', [
                 'title' => "{$this->title} : View",
                 'student' => $student,
-                //'courses' => $courses
+
             ]);
             }
 
