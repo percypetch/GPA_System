@@ -75,4 +75,48 @@ class StudentController extends Controller
             }
         
         }
+
+        function updateForm($studentCode) {
+            //$this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+           
+            return view('student-update', [
+              'title' => "{$this->title} : Update",
+              'student' => $student,
+             // 'year' => $student->student_year,
+            ]);
+        }
+    
+        function update(Request $request, $studentCode) {
+           // $this->authorize('update',Student::class);
+            try 
+            {
+                $student = Student::where('student_code', $studentCode)->FirstOrFail();
+                
+                $data = $request->getParsedBody();
+                $student->fill($data);
+                $student->save();
+            
+                return redirect()->route('student-view', [
+                    'student' => $student->student_code,
+                ])->with('status', "Student {$student->code} was updated.");
+             } 
+    
+             catch(\Exception $excp) 
+             {
+                return back()->withInput()->withErrors([
+                'input' => $excp->getMessage(),
+                ]);
+            }
+    
+          }
+    
+        function delete($studentCode) {
+           // $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $student->delete();
+    
+            return redirect()->route('student-list')
+          ->with('status', "Student {$student->student_code} was deleted.");
+        }  
 }

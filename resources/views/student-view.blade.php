@@ -10,11 +10,10 @@
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
-                            <a href="">Update</a> 
+                            <a href="{{ route('student-update-form',['student' => $student->student_code,]) }}">Update</a> 
                         </li>
-
                         <li class="list-group-item">
-                        <a href="">Delete</a>
+                        <a href="{{ route('student-delete',['student' => $student->student_code,]) }}">Delete</a>
                         </li>
                     </ul>
                 </nav>
@@ -46,6 +45,7 @@
 
                     Code :: {{ $student->student_code }} <br>
                     Name ::{{ $student->student_name }} <br>
+                    Gender ::{{ $student->student_gender }} <br>
                     Year ::{{ $student->student_year }} <br>
                     Phone contact ::{{ $student->student_phone }} <br>
                     GPA ::{{ $student->student_gpa }} <br>

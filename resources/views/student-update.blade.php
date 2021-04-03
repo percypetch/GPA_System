@@ -27,31 +27,31 @@
                     @endif
 
 
-    <form action="{{ route('student-create') }}" method="post">
+                    <form action="{{ route('student-update',['student' => $student->student_code,]) }}" method="post">
         @csrf
 
         <table class="tablecenter normal alignRight">
         <tr>
             <td>
-                <span class=""><b>*Code</b></span>
+                <span class=""><b>Code</b></span>
             </td>
             <td>
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_code" size="10" value="{{ old('student_code') }}" required>
+                <input type="text" name="student_code" size="10" value="{{ old('student_code')??$student->student_code }}" require>
             </td>
         </tr>
 
         <tr>
             <td>
-                <span class=""><b>*Name</b></span>
+                <span class=""><b>Name</b></span>
             </td>
             <td>
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_name" size="50" value="{{ old('student_name') }}" required>
+                <input type="text" name="student_name" size="50" value="{{ old('student_name')??$student->student_name }}" require>
             </td>
         </tr>
 
@@ -63,7 +63,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_phone" size="50" value="{{ old('student_phone') }}" maxlength="12">
+                <input type="text" name="student_phone" size="50" value="{{ old('student_phone')??$student->student_phone }}">
             </td>
         </tr>
 
@@ -75,11 +75,17 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <select id="student_year" name="student_year">
+                <select id="student_year" name="student_year" >
                 @for($i=1 ; $i<=4 ; $i++)
-                    <option value="{{ $i }}">  
-                       {{ $i }}
-                    </option>
+                    @if($student->student_year ==  $i)
+                        <option value="{{ $i }}" selected>  
+                        {{ $i }}
+                        </option>
+                    @else
+                        <option value="{{ $i }}">  
+                        {{ $i }}
+                        </option>
+                     @endif
                 @endfor
                 </select>
             </td>
@@ -93,14 +99,24 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-            <input type="radio" id="student_gender" name="student_gender" value="Male"> Male </input>
-            <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+            @if($student->student_gender=='Male')
+                <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+            @elseif($student->student_gender=='Female')
+                <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"checked>Female</input>
+            @else
+            <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+            @endif
             </td>
         </tr>
 
         
         <tr>
             <td>
+
+
 
             </td>
             <td>
