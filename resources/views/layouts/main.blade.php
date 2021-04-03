@@ -33,6 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li><a href="/student"><span class="text-light">Student</span></a>&nbsp</li> 
+                        <li><a href="/teacher"><span class="text-light">Teacher</span></a>&nbsp</li> 
                         <li><a href="/student"><span class="text-light">Student</span></a></li>&nbsp
                         <li><a href="/course"><span class="text-light">Course</span></a></li>&nbsp  
                     </ul>
