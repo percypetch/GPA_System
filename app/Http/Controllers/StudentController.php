@@ -39,9 +39,9 @@ class StudentController extends Controller
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $student->courses()->orderBy('course_code');
-            $term = (key_exists('term', $data))? $data['term'] : '';
+           /* $term = (key_exists('term', $data))? $data['term'] : '';
     
-           /* foreach(preg_split('/\s+/', $term) as $word) {
+            foreach(preg_split('/\s+/', $term) as $word) {
                 $query->where(function($innerQuery) use ($word) {
                     return $innerQuery
                         ->where('course_code', 'LIKE', "%{$word}%")
@@ -52,55 +52,9 @@ class StudentController extends Controller
             return view('student-view', [
                 'title' => "{$this->title} : View",
                 'student' => $student,
-                'term' => $term,
+                //'term' => $term,
                 'courses' => $query->paginate(5),
             ]);
-            }
-
-        function addCourseForm(Request $request, $studentCode) {
-            $student = Student::where('student_code', $studentCode)->firstOrFail();
-            $data = $request->getQueryParams();
-            $query = Course::orderBy('course_code')->whereDoesntHave('students', function($innerQuery) use ($student) {
-        $innerQuery->where('id', $student->id);
-        })
-        ;
-            $term = (key_exists('term', $data))? $data['term'] : '';
-            foreach(preg_split('/\s+/', $term) as $word) {
-                $query->where(function($innerQuery) use ($word) {
-                    return $innerQuery
-                        ->where('course_code', 'LIKE', "%{$word}%")
-                        ->orWhere('course_name', 'LIKE', "%{$word}%")
-                    ;
-                });
-            }
-
-            return view('student-add-course', [
-                'title' => "{$this->title} {$student->student_code} : Add Course",
-                'term' => $term,
-                'student' => $student,
-                'courses' => $query->paginate(5),
-            ]);
-        }
-
-        function addCourse(Request $request, $studentCode) {
-            $student = Student::where('student_code', $studentCode)->firstOrFail();
-            $data = $request->getParsedBody();
-            $student->courses()->attach($data['course']);
-            
-            return back()
-            ->with('status', "Course {$data['courseCode']} was added to Student {$student->student_code}.");
-            ;
-            }
-
-        function removeCourse($studentCode, $courseCode) {
-            $student = Student::where('student_code', $studentCode)->firstOrFail();
-            $course = $student->courses()
-            ->where('course_code', $courseCode)->firstOrFail();
-            $student->courses()->detach($course);
-            
-            return back()
-            ->with('status', "Course {$course->course_code} was removed from Student {$student->student_code}.");
-            ;
             }
 
         function createForm(Request $request) {
@@ -179,4 +133,54 @@ class StudentController extends Controller
           ->with('status', "Student {$student->student_code} was deleted.");
         }  
 
+
+
+        function addCourseForm(Request $request, $studentCode) {
+            $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $data = $request->getQueryParams();
+            $query = Course::orderBy('course_code')->whereDoesntHave('students', function($innerQuery) use ($student) {
+                $innerQuery->where('id', $student->id);
+        })
+        ;
+            $term = (key_exists('term', $data))? $data['term'] : '';
+            foreach(preg_split('/\s+/', $term) as $word) {
+                $query->where(function($innerQuery) use ($word) {
+                    return $innerQuery
+                        ->where('course_code', 'LIKE', "%{$word}%")
+                        ->orWhere('course_name', 'LIKE', "%{$word}%")
+                    ;
+                });
+            }
+
+            return view('student-add-course', [
+                'title' => "{$this->title} {$student->student_code} : Add Course",
+                'term' => $term,
+                'student' => $student,
+                'courses' => $query->paginate(5),
+            ]);
+        }
+
+        function addCourse(Request $request, $studentCode) {
+            $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $data = $request->getParsedBody();
+            $student->courses()->attach($data['course']);
+            
+            return back()
+            ->with('status', "Course {$data['courseCode']} was added to Student {$student->student_code}.");
+            ;
+            }
+
+        function removeCourse($studentCode, $courseCode) {
+            $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $course = $student->courses()
+            ->where('course_code', $courseCode)->firstOrFail();
+            $student->courses()->detach($course);
+            
+            return back()
+            ->with('status', "Course {$course->course_code} was removed from Student {$student->student_code}.");
+            ;
+            }
 }

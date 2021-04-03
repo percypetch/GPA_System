@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\Models\Teacher;
+use App\Models\Course;
 
 class TeacherController extends Controller
 {
@@ -34,18 +35,20 @@ class TeacherController extends Controller
         ]);
         }
 
-        function show($teacherCode=0,$coursesCode=0) {
+        function show(Request $request,$teacherCode=0,$coursesCode=0) {
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
-            //$courses = Courses::where('courses_code', $coursesCode)->firstOrFail();
+            $data = $request->getQueryParams();
+            $query = $teacher->courses()->orderBy('course_code');
+            
             return view('teacher-view', [
                 'title' => "{$this->title} : View",
                 'teacher' => $teacher,
-                //'courses' => $courses
+                'courses' => $query->paginate(5),
             ]);
             }
 
         function createForm(Request $request) {
-            //$this->authorize('update',Teacher::class);
+            $this->authorize('update',Teacher::class);
            
             return view('teacher-create', [
             'title' => "{$this->title} : Create",
@@ -54,7 +57,7 @@ class TeacherController extends Controller
         }
 
         function create(Request $request) {
-            //$this->authorize('update',Teacher::class);
+            $this->authorize('update',Teacher::class);
 
             try 
             {
@@ -77,7 +80,7 @@ class TeacherController extends Controller
         }
 
         function updateForm($teacherCode) {
-            //$this->authorize('update',Teacher::class);
+            $this->authorize('update',Teacher::class);
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
            
             return view('teacher-update', [
@@ -88,7 +91,7 @@ class TeacherController extends Controller
         }
     
         function update(Request $request, $teacherCode) {
-           // $this->authorize('update',Teacher::class);
+            $this->authorize('update',Teacher::class);
             try 
             {
                 $teacher = Teacher::where('teacher_code', $teacherCode)->FirstOrFail();
@@ -112,11 +115,59 @@ class TeacherController extends Controller
           }
     
         function delete($teacherCode) {
-           // $this->authorize('update',Teacher::class);
+            $this->authorize('update',Teacher::class);
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $teacher->delete();
     
             return redirect()->route('teacher-list')
           ->with('status', "Teacher {$teacher->teacher_code} was deleted.");
         }
+
+
+
+        function addCourseForm(Request $request, $teacherCode) {
+            $this->authorize('update',Teacher::class);
+            $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
+            $data = $request->getQueryParams();
+            $query = Course::orderBy('course_code')->whereDoesntHave('teachers', function($innerQuery) use ($teacher) {
+                $innerQuery->where('id', $teacher->id);
+            });
+            $term = (key_exists('term', $data))? $data['term'] : '';
+    
+            foreach(preg_split('/\s+/', $term) as $word) {
+                $query->where(function($innerQuery) use ($word) {
+                    return $innerQuery
+                        ->where('course_code', 'LIKE', "%{$word}%")
+                        ->orWhere('course_name', 'LIKE', "%{$word}%");
+                        });
+            }
+    
+            return view('teacher-add-course', [
+            'title' => "{$this->title} {$teacher->teacher_code} : Add Course",
+            'term' => $term,
+            'teacher' => $teacher,
+            'courses' => $query->paginate(5),
+            ]);
+        }
+
+        function addCourse(Request $request, $teacherCode) {
+            $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
+            $data = $request->getParsedBody();
+            $teacher->courses()->attach($data['course']);
+            
+            return back()
+            ->with('status', "Course {$data['courseCode']} was added to Teacher {$teacher->teacher_code}.");
+            ;
+            }
+
+        function removeCourse($teacherCode, $courseCode) {
+            $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
+            $course = $teacher->courses()
+            ->where('course_code', $courseCode)->firstOrFail();
+            $teacher->courses()->detach($course);
+            
+            return back()
+            ->with('status', "Course {$course->course_code} was removed from Teacher {$teacher->teacher_code}.");
+            ;
+            }
 }

@@ -81,6 +81,15 @@ Route::post('/teacher/{teacher}/update', [TeacherController::class, 'update'])
 Route::get('/teacher/{teacher}/delete', [TeacherController::class, 'delete'])
 ->name('teacher-delete');
 
+Route::get('/teacher/{teacher}/course/add',[TeacherController::class, 'addCourseForm'])
+->name('teacher-add-course-form');
+
+Route::post('/teacher/{teacher}/course/add',[TeacherController::class, 'addCourse'])
+->name('teacher-add-course');
+
+Route::get('/teacher/{teacher}/course/{course}/remove',[TeacherController::class, 'removeCourse'])
+->name('teacher-remove-course');
+
 // -----------------------------------------------------------
 
 

@@ -10,6 +10,9 @@
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
+                            <a href="{{ route('teacher-add-course',['teacher' => $teacher->teacher_code,]) }}">Add Courses</a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="{{ route('teacher-update-form',['teacher' => $teacher->teacher_code,]) }}">Update</a> 
                         </li>
                         <li class="list-group-item">
@@ -47,7 +50,30 @@
                     Name ::{{ $teacher->teacher_name }} <br>
                     Gender ::{{ $teacher->teacher_gender }} <br>
                     Phone contact ::{{ $teacher->teacher_phone }} <br>
-                    Courses :: TABLE for each
+                    
+                    <br><br><br><br><br><br>
+                    <table class="table text-center">
+                        <thead>
+                        Courses
+                            <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Number of Students</th>
+                            <th scope="col">&nbsp</th>
+                            </tr>
+                        </thead>
+                        @foreach($courses as $row)
+                        <tbody>
+                            <tr>
+                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+                                {{ $row->course_code }}</a></td>
+                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+                                {{ $row->course_name }}</a></td>
+                            <td>$cal_stu</td>
+                            <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}">Remove</a></td>
+                            </tr>
+                        @endforeach  
+                        </tbody>
                     </table>
                     
                 </div>
