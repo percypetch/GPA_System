@@ -28,7 +28,7 @@ Route::post('/auth/login', [LoginController::class, 'authenticate'])
 Route::get('/auth/logout', [LoginController::class, 'logout'])
 ->name('logout');
 
-Route::get('/student', [StudentController::class, 'list'])
+Route::get('/student', [StudentController::class, 'list'])->middleware('auth')
 ->name('student-list');
 
 Route::get('/student/create', [StudentController::class, 'createForm'])
