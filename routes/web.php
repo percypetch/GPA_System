@@ -5,11 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;*/
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
-<<<<<<< HEAD
 use App\Http\Controllers\TeacherController;
-=======
 use App\Http\Controllers\CourseController;
->>>>>>> 046946ab303e30a400f258c14484a60bb160713c
 /*
 |--------------------------------------------------------------------------
 | Web Routes
