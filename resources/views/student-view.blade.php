@@ -63,6 +63,7 @@
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Credit</th>
+                            <th scope="col">&nbsp</th>
                             </tr>
                         </thead>
                         @foreach($courses as $row)
