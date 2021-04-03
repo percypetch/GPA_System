@@ -28,7 +28,7 @@
                     @endif
 
 
-    <form action="{{ route('course-update',['course' => $course->courss_code,]) }}" method="post">
+    <form action="{{ route('course-update',['course' => $course->course_code,]) }}" method="post">
         @csrf
 
         <table class="tablecenter normal alignRight">
