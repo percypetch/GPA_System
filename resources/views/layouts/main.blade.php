@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>GPA System - @yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,10 +21,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ route('student-list') }}">
+                    <span class="text-warning">GPA System</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,9 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a href="/student">Student</a>&nbsp</li>
-                        <li><a href="/teacher">Teacher</a>&nbsp</li>
-                       
+                        <li><a href="/student"><span class="text-light">Student</span></a>&nbsp</li> 
+                        <li><a href="/teacher"><span class="text-light">Teacher</span></a>&nbsp</li> 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,7 +70,7 @@
                                     </form> -->
                     <nav>
                         <ul class="navbar-nav mr-auto">
-                            <li><span>{{ \Auth::user()->name }}</span></li> &nbsp
+                            <li><span class="text-light">{{ \Auth::user()->name }}</span></li> &nbsp&nbsp&nbsp
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                     </nav>

@@ -45,7 +45,7 @@ class StudentController extends Controller
             }
 
         function createForm(Request $request) {
-            //$this->authorize('update',Student::class);
+            $this->authorize('update',Student::class);
            
             return view('student-create', [
             'title' => "{$this->title} : Create",
@@ -54,7 +54,7 @@ class StudentController extends Controller
         }
 
         function create(Request $request) {
-            //$this->authorize('update',Student::class);
+            $this->authorize('update',Student::class);
 
             try 
             {
