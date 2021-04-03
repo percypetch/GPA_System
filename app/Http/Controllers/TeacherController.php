@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Teacher;
 use App\Models\Course;
@@ -39,11 +40,14 @@ class TeacherController extends Controller
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $teacher->courses()->orderBy('course_code');
+            $cal_stu = DB::select("SELECT count(course_student.student_id) as 'stu_num'
+                                    from course_student group by course_student.course_id");
             
             return view('teacher-view', [
                 'title' => "{$this->title} : View",
                 'teacher' => $teacher,
                 'courses' => $query->paginate(5),
+                'cal_stu' => $cal_stu,
             ]);
             }
 
