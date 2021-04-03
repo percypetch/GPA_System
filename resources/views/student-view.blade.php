@@ -46,6 +46,8 @@
 
                     Code :: {{ $student->student_code }} <br>
                     Name ::{{ $student->student_name }} <br>
+                    Year ::{{ $student->student_year }} <br>
+                    Phone contact ::{{ $student->student_phone }} <br>
                     GPA ::{{ $student->student_gpa }} <br>
                     Courses :: TABLE for each
                     </table>

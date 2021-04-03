@@ -39,7 +39,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_code" size="50" value="{{ old('student_code') }}">
+                <input type="text" name="student_code" size="10" value="{{ old('student_code') }}" require>
             </td>
         </tr>
 
@@ -51,7 +51,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_name" size="50" value="{{ old('student_name') }}">
+                <input type="text" name="student_name" size="50" value="{{ old('student_name') }}" require>
             </td>
         </tr>
 
@@ -63,7 +63,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="phone" size="50" value="{{ old('phone') }}">
+                <input type="text" name="student_phone" size="50" value="{{ old('student_phone') }}">
             </td>
         </tr>
 
@@ -75,9 +75,9 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <select id="year" name="year">
+                <select id="student_year" name="student_year">
                 @for($i=1 ; $i<=4 ; $i++)
-                    <option value="$i">  
+                    <option value="{{ $i }}">  
                        {{ $i }}
                     </option>
                 @endfor
@@ -93,8 +93,8 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-            <input type="radio" id="gender" name="gender" value="Male"> Male </input>
-            <input type="radio" id="gender" name="gender" value="Female">Female</input>
+            <input type="radio" id="student_gender" name="student_gender" value="Male"> Male </input>
+            <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
             </td>
         </tr>
 
@@ -106,7 +106,7 @@
             <td>
 
             </td>
-            <td class="center">
+            <td class="text-center">
             <input type="submit">
             </td>
         </tr>
