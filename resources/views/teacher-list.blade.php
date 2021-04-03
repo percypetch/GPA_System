@@ -1,29 +1,22 @@
 @extends('layouts.main')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header ">{{$title}} {{ $student->student_code }}
+                <div class="card-header">{{$title}}
+
                 <div class="text-center">
                 <nav>
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
-                        <a href="{{ route('student-add-course',['student' => $student->student_code,]) }}">Add Courses</a>
+                            <a href="/teacher/create">Key in Teacher Data</a> 
                         </li>
-                        <li class="list-group-item">
-                            <a href="{{ route('student-update-form',['student' => $student->student_code,]) }}">Update</a> 
-                        </li>
-                        <li class="list-group-item">
-                        <a href="{{ route('student-delete',['student' => $student->student_code,]) }}">Delete</a>
-                        </li>
-                    </ul>
+                        </ul>
                 </nav>
                 </div>
-                
-
-
                 </div>
 
                 <div class="card-body">
@@ -45,45 +38,40 @@
                     </div>
                     @endif
 
+                    <div class="text-center">
+                    <form action="{{ route('teacher-list') }}" method="get">
+                    <label><b>Search </b><input type="text" name="term" value="{{ $term }}" /></label>
+                    </form>
+                    </div>
 
-                    Code :: {{ $student->student_code }} <br>
-                    Name ::{{ $student->student_name }} <br>
-                    Gender ::{{ $student->student_gender }} <br>
-                    Year ::{{ $student->student_year }} <br>
-                    Phone contact ::{{ $student->student_phone }} <br>
-                    <br>
+                    {{ $teacher->withQueryString()->links() }}
 
-
-                    
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
-                    <table class="table text-center">
+                    <table class="table">
                         <thead>
-                        Courses
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Credit</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Gender</th>
                             </tr>
                         </thead>
-                        @foreach($courses as $row)
+                        @foreach($teacher as $row)
                         <tbody>
                             <tr>
-                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
-                                {{ $row->course_code }}</a></td>
-                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
-                                {{ $row->course_name }}</a></td>
-                            <td>{{ $row->credit }}</td>
+                            <td> <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
+                                {{ $row->teacher_code }}</a></td>
+                            <td> <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
+                                {{ $row->teacher_name }}</a></td>
+                            <td>{{ $row->teacher_phone }}</td>
+                            <td>{{ $row->teacher_gender }}</td>
                             </tr>
                         @endforeach  
                         </tbody>
                     </table>
-                    GPA ::{{ $student->student_gpa }}
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
-
-

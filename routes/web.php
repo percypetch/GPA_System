@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-/*use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\TeacherController;*/
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
@@ -56,10 +55,35 @@ Route::get('/student/{student}/course/add',[StudentController::class, 'addCourse
 Route::post('/student/{student}/course/add',[StudentController::class, 'addCourse'])
 ->name('student-add-course');
 
-Route::get('/student/{student}/course/{course}/remove',[StudentController::class, 'removeCourse'])
-->name('student-remove-course');
+/*Route::get('/student/{student}/course/{course}/remove',[StudentController::class, 'removeCourse'])
+->name('student-remove-course');*/
+
 // -----------------------------------------------------------
+
+Route::get('/teacher', [TeacherController::class, 'list'])
+->name('teacher-list');
+
+Route::get('/teacher/create', [TeacherController::class, 'createForm'])
+->name('teacher-create-form');
+
+Route::post('/teacher/create', [TeacherController::class, 'create'])
+->name('teacher-create');
+
+Route::get('/teacher/{teacher}', [TeacherController::class, 'show'])
+->name('teacher-view');
+
+Route::get('/teacher/{teacher}/update', [TeacherController::class, 'updateForm'])
+->name('teacher-update-form');
+
+Route::post('/teacher/{teacher}/update', [TeacherController::class, 'update'])
+->name('teacher-update');
+
+Route::get('/teacher/{teacher}/delete', [TeacherController::class, 'delete'])
+->name('teacher-delete');
+
 // -----------------------------------------------------------
+
+
 
 Route::get('/course', [CourseController::class, 'list'])
 ->name('course-list');
