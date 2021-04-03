@@ -34,12 +34,16 @@ class CourseController extends Controller
     }
 
 
-    function show($courseCode=0,$studentCode=0) {
+    function show(Request $request,$courseCode=0,$studentCode=0) {
         $course = Course::where('course_code', $courseCode)->firstOrFail();
-
+        $data = $request->getQueryParams();
+        $query_student = $course->students()->orderBy('student_code');
+        $query_teacher = $course->teachers()->orderBy('teacher_code');
         return view('course-view', [
             'title' => "{$this->title} : View",
             'course' => $course,
+            'students' => $query_student->get(),
+            'teachers' => $query_teacher->get(),
 
         ]);
         }
