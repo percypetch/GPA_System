@@ -1,22 +1,20 @@
 @extends('layouts.main')
+@section('title', $course->course_code)
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header ">{{$title}} {{ $student->student_code }}
+                <div class="card-header ">{{$title}} {{ $course->course_code }}
                 <div class="text-center">
                 <nav>
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
-                        <a href="{{ route('student-add-course',['student' => $student->student_code,]) }}">Add Courses</a>
+                            <a href="{{ route('course-update-form',['course' => $course->course_code,]) }}">Update</a> 
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('student-update-form',['student' => $student->student_code,]) }}">Update</a> 
-                        </li>
-                        <li class="list-group-item">
-                        <a href="{{ route('student-delete',['student' => $student->student_code,]) }}">Delete</a>
+                        <a href="">Delete</a>
                         </li>
                     </ul>
                 </nav>
@@ -46,13 +44,12 @@
                     @endif
 
 
-                    Code :: {{ $student->student_code }} <br>
-                    Name ::{{ $student->student_name }} <br>
-                    Gender ::{{ $student->student_gender }} <br>
-                    Year ::{{ $student->student_year }} <br>
-                    Phone contact ::{{ $student->student_phone }} <br>
-                    GPA ::{{ $student->student_gpa }} <br>
-                    Courses :: TABLE for each
+                    Code :: {{ $course->course_code }} <br>
+                    Name :: {{ $course->course_name }} <br>
+                    Credit :: {{ $course->credit }} <br>
+                    Description :: {{ $course->descriptions }} <br>
+
+
                     </table>
                     
                 </div>
@@ -61,6 +58,3 @@
     </div>
 </div>
 @endsection
-
-
-

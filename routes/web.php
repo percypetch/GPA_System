@@ -5,7 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;*/
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
+<<<<<<< HEAD
 use App\Http\Controllers\TeacherController;
+=======
+use App\Http\Controllers\CourseController;
+>>>>>>> 046946ab303e30a400f258c14484a60bb160713c
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,3 +78,34 @@ Route::get('/teacher/{teacher}/delete', [TeacherController::class, 'delete'])
 ->name('teacher-delete');
 
 // -----------------------------------------------------------
+Route::get('/student/{student}/course/add',[StudentController::class, 'addCourseForm'])
+->name('student-add-course-form');
+
+Route::post('/student/{student}/course/add',[StudentController::class, 'addCourse'])
+->name('student-add-course');
+
+Route::get('/student/{student}/course/{course}/remove',[StudentController::class, 'removeCourse'])
+->name('student-remove-course');
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+
+Route::get('/course', [CourseController::class, 'list'])
+->name('course-list');
+
+Route::get('/course/create', [CourseController::class, 'createForm'])
+->name('course-create-form');
+
+Route::post('/course/create', [CourseController::class, 'create'])
+->name('course-create');
+
+Route::get('/course/{course}', [CourseController::class, 'show'])
+->name('course-view');
+
+Route::get('/course/{course}/update', [CourseController::class, 'updateForm'])
+->name('course-update-form');
+
+Route::post('/course/{course}/update', [CourseController::class, 'update'])
+->name('course-update');
+
+
+

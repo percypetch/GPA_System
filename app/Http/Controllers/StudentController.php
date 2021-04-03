@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\Models\Student;
+use App\Models\Course;
 
 class StudentController extends Controller
 {
@@ -77,7 +78,7 @@ class StudentController extends Controller
         }
 
         function updateForm($studentCode) {
-            //$this->authorize('update',Student::class);
+            $this->authorize('update',Student::class);
             $student = Student::where('student_code', $studentCode)->firstOrFail();
            
             return view('student-update', [
@@ -88,7 +89,7 @@ class StudentController extends Controller
         }
     
         function update(Request $request, $studentCode) {
-           // $this->authorize('update',Student::class);
+            $this->authorize('update',Student::class);
             try 
             {
                 $student = Student::where('student_code', $studentCode)->FirstOrFail();
@@ -112,11 +113,59 @@ class StudentController extends Controller
           }
     
         function delete($studentCode) {
-           // $this->authorize('update',Student::class);
+            $this->authorize('update',Student::class);
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $student->delete();
     
             return redirect()->route('student-list')
           ->with('status', "Student {$student->student_code} was deleted.");
         }  
+
+        function addCourseForm(Request $request, $studentCode) {
+            $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $data = $request->getQueryParams();
+            $query = Course::orderBy('course_code')->whereDoesntHave('courses', function($innerQuery) use ($course) {
+                $innerQuery->where('course_id', $course->course_d);
+            });
+            $term = (key_exists('term', $data))? $data['term'] : '';
+    
+            foreach(preg_split('/\s+/', $term) as $word) {
+                $query->where(function($innerQuery) use ($word) {
+                    return $innerQuery
+                        ->where('course_code', 'LIKE', "%{$word}%")
+                        ->orWhere('course_name', 'LIKE', "%{$word}%")
+                        ->orWhere('credit', 'LIKE', "%{$word}%");
+                        });
+            }
+    
+            return view('student-add-course', [
+            'title' => "{$this->title} {$student->code} : Add Courses",
+            'term' => $term,
+            'student' => $student,
+            'courses' => $query->paginate(5),
+            ]);        
+        }
+    
+        function addCourse(Request $request, $studentCode) {
+            $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $data = $request->getParsedBody();
+            $student->courses()->attach($data['course']);
+    
+    
+            return back()
+                ->with('status', "Course {$data['courseCode']} was added to Student {$student->student_code}.");     
+        }
+    
+        function removeShop($studentCode, $courseCode) {
+            $this->authorize('update',Student::class);
+            $student = Student::where('student_code', $studentCode)->firstOrFail();
+            $course = $student->courses()
+            ->where('course_code', $courseCode)->firstOrFail();
+            $student->courses()->detach($course);
+            
+            return back()
+            ->with('status', "Course {$course->course_code} was removed.");
+        }
 }
