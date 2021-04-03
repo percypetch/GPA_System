@@ -10,6 +10,9 @@
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
+                        <a href="{{ route('student-add-course',['student' => $student->student_code,]) }}">Add Courses</a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="{{ route('student-update-form',['student' => $student->student_code,]) }}">Update</a> 
                         </li>
                         <li class="list-group-item">

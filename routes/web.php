@@ -50,6 +50,15 @@ Route::post('/student/{student}/update', [StudentController::class, 'update'])
 Route::get('/student/{student}/delete', [StudentController::class, 'delete'])
 ->name('student-delete');
 
+Route::get('/student/{student}/course/add',[StudentController::class, 'addCourseForm'])
+->name('student-add-course-form');
+
+Route::post('/student/{student}/course/add',[StudentController::class, 'addCourse'])
+->name('student-add-course');
+
+Route::get('/student/{student}/course/{course}/remove',[StudentController::class, 'removeCourse'])
+->name('student-remove-course');
+// -----------------------------------------------------------
 // -----------------------------------------------------------
 
 Route::get('/course', [CourseController::class, 'list'])
