@@ -15,6 +15,9 @@ use App\Http\Controllers\StudentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return redirect('/auth/login');
+});
 
 Route::get('/auth/login', [LoginController::class, 'loginForm'])
 ->name('login'); 
