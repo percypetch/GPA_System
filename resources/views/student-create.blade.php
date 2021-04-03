@@ -33,25 +33,25 @@
         <table class="tablecenter normal alignRight">
         <tr>
             <td>
-                <span class=""><b>Code</b></span>
+                <span class=""><b>*Code</b></span>
             </td>
             <td>
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_code" size="10" value="{{ old('student_code') }}" require>
+                <input type="text" name="student_code" size="10" value="{{ old('student_code') }}" required>
             </td>
         </tr>
 
         <tr>
             <td>
-                <span class=""><b>Name</b></span>
+                <span class=""><b>*Name</b></span>
             </td>
             <td>
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_name" size="50" value="{{ old('student_name') }}" require>
+                <input type="text" name="student_name" size="50" value="{{ old('student_name') }}" required>
             </td>
         </tr>
 
@@ -63,7 +63,7 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <input type="text" name="student_phone" size="50" value="{{ old('student_phone') }}">
+                <input type="text" name="student_phone" size="50" value="{{ old('student_phone') }}" maxlength="12">
             </td>
         </tr>
 
