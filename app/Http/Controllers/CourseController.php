@@ -71,4 +71,39 @@ class CourseController extends Controller
               ]);
             }
         }
+        
+        function updateForm($courseCode) {
+            $this->authorize('update',Student::class);
+            $course = Course::where('course_code', $courseCode)->firstOrFail();
+           
+            return view('course-update', [
+              'title' => "{$this->title} : Update",
+              'course' => $course,
+      
+            ]);
+        }
+    
+        function update(Request $request, $courseCode) {
+            $this->authorize('update',Student::class);
+            try 
+            {
+                $course = Course::where('course_code', $courseCode)->FirstOrFail();
+                
+                $data = $request->getParsedBody();
+                $course->fill($data);
+                $course->save();
+            
+                return redirect()->route('course-view', [
+                    'course' => $course->course_code,
+                ])->with('status', "Course {$course->code} was updated.");
+             } 
+    
+             catch(\Exception $excp) 
+             {
+                return back()->withInput()->withErrors([
+                'input' => $excp->getMessage(),
+                ]);
+            }
+    
+          }
 }
