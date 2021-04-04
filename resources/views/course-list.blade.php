@@ -14,7 +14,10 @@
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
-                            <a href="{{ route('course-create-form') }}">Key in Course Data</a> 
+                            <a href="{{ route('course-create-form') }}">Key in Course Data</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('course-chart') }}">Course Chart</a>
                         </li>
                         </ul>
                 @endcan

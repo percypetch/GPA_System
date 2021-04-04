@@ -97,6 +97,9 @@ Route::get('/teacher/{teacher}/course/{course}/remove',[TeacherController::class
 Route::get('/course', [CourseController::class, 'list'])
 ->name('course-list');
 
+Route::get('/course-chart', [CourseController::class, 'showChart'])
+->name('course-chart');
+
 Route::get('/course/create', [CourseController::class, 'createForm'])
 ->name('course-create-form');
 
