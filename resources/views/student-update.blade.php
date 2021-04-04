@@ -77,13 +77,13 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-                <select id="student_year" name="student_year" >
+                <select id="student_year" name="student_year" > 
                 @for($i=1 ; $i<=4 ; $i++)
                     @if(old('student_year') == $i)
                         <option selected value="{{ $i }}">  
                         {{ $i }}
-                        </option>
-                    @elseif($student->student_year ==  $i)
+                        </option>              
+                    @elseif($student->student_year == $i && old('student_year') == '')
                         <option selected value="{{ $i }}">  
                         {{ $i }}
                         </option>
@@ -111,7 +111,7 @@
             @elseif(old('student_gender')=='Female')
                 <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
                 <input type="radio" id="student_gender" name="student_gender" value="Female"checked>Female</input>
-            @elseif($student->student_gender=='Male')
+            @elseif($student->student_gender=='Male' )
                 <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
                 <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
             @elseif($student->student_gender=='Female')
@@ -139,12 +139,6 @@
             </td>
         </tr>
         </table>
-
-        @for($i=1 ; $i<=4 ; $i++)
-                    {{ $student->student_year }} ==  {{ $i }} and old is {{old('student_year')}} <br>
-
-        @endfor
-
     </form>
     </main>
                     
