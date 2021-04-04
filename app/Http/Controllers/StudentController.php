@@ -117,7 +117,7 @@ class StudentController extends Controller
             
                 return redirect()->route('student-view', [
                     'student' => $student->student_code,
-                ])->with('status', "Student {$student->code} was updated.");
+                ])->with('status', "Student {$student->student_code} was updated.");
              } 
     
              catch(\Exception $excp) 
