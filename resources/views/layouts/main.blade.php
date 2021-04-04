@@ -21,27 +21,6 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('student-list') }}">
-                    <span class="text-warning">GPA System</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    
-                        <ul class="navbar-nav mr-auto">
-                        @can('update', \App\Models\Student::class)
-                            <li><a href="/student"><span class="text-light">Student</span></a>&nbsp</li> 
-                        @endcan
-
-                            <li><a href="/teacher"><span class="text-light">Teacher</span></a>&nbsp</li> 
-
-
-                            <li><a href="/course"><span class="text-light">Course</span></a></li>&nbsp  
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container-fluid">
     <a class="navbar-brand" href="/student">RegSystem</a>
@@ -50,9 +29,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        @can('update', \App\Models\Student::class)
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/student">Student</a>
         </li>
+        @endcan
         <li class="nav-item">
           <a class="nav-link" href="/teacher">Teacher</a>
         </li>
