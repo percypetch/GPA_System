@@ -99,17 +99,23 @@
                             <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}"><button type="button" class="btn btn-danger">Remove</button></a></td>
                             @endcan
                             </tr>
-                        @endforeach  
+                        @endforeach
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            @if($sum != 0)
+                            <td><b><u>{{$sum}}</u></td>
+                            @endif
+                            <td></td>
+                        </tr>  
                         </form>
                         </tbody>
                     </table>
-                    <table class="table text-center">
-                        <tr><td></td><td></td><td>  
-                        @if($sum != 0)
-                            <b><u>{{$sum}}</u>
-                        @endif
-                        </td>@can('update', \App\Models\Student::class)<td></td>@endcan</tr>
-                    </table>
+                
+                       
+                            
+                        
+                        
                 </div>
             </div>
         </div>
