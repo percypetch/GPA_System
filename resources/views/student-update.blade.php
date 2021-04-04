@@ -80,11 +80,15 @@
                 <select id="student_year" name="student_year" >
                 @for($i=1 ; $i<=4 ; $i++)
                     @if($student->student_year ==  $i)
-                        <option selected value="{{ $i }}" {{ ($student->student_year == old('student_year'))? ' selected' : '' }} >  
+                        <option selected value="{{ $i }}">  
+                        {{ $i }}
+                        </option>
+                    @elseif(old('student_year') == $i)
+                        <option selected value="{{ $i }}" >  
                         {{ $i }}
                         </option>
                     @else
-                        <option  value="{{ $i }}" {{ ($student->student_year == old('student_year'))? ' selected' : '' }} >  
+                        <option  value="{{ $i }}">  
                         {{ $i }}
                         </option>
                     @endif
@@ -129,6 +133,7 @@
             </td>
         </tr>
         </table>
+
     </form>
     </main>
                     
