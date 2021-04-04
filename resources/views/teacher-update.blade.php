@@ -35,17 +35,9 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
                 <input type="text" name="teacher_code" size="10" value="{{ old('teacher_code')??$teacher->teacher_code }}" class="form-control" require>
         </div>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>Name</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="teacher_name" size="50" value="{{ old('teacher_name')??$teacher->teacher_name }}" require>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                <input type="text" name="teacher_name" size="50" value="{{ old('teacher_name')??$teacher->teacher_name }}" class="form-control" require>
             </td>
         </tr>
 
