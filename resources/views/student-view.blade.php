@@ -76,14 +76,18 @@
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Credit</th>
-                            <th scope="col"></th>
                             @can('update', \App\Models\Student::class)
                             <th scope="col">&nbsp</th>
                             @endcan
                             </tr>
                         </thead>
-
+                        @php
+                            $sum = 0;
+                        @endphp
                         @foreach($courses as $row)
+                            @php
+                            $sum+=$row->credit ;
+                            @endphp
                         <tbody>
                             <tr>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
@@ -99,7 +103,13 @@
                         </form>
                         </tbody>
                     </table>
-                    
+                    <table class="table text-center">
+                        <tr><td></td><td></td><td>  
+                        @if($sum != 0)
+                            <b><u>{{$sum}}</u>
+                        @endif
+                        </td>@can('update', \App\Models\Student::class)<td></td>@endcan</tr>
+                    </table>
                 </div>
             </div>
         </div>
