@@ -62,11 +62,11 @@
             <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Phone</b></span>
             <input type="text"value="{{ $student->student_phone }}" class="form-control" style="background-color:white;" disabled>
-            </div>
+            </div><br>
 
                     <table class="table text-center">
                         <thead>
-                        Courses
+                        <h5>Courses Registed</h5>
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
