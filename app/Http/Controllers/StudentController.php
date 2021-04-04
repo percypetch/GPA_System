@@ -22,13 +22,7 @@ class StudentController extends Controller
             $data = $request->getQueryParams();
             $query = Student::orderBy('student_code');
             $term = (key_exists('term', $data))? $data['term'] : '';
-            $gpa = DB::select("SELECT sum(grade*credit)/sum(credit) as 'gpa',student_code
-                                    from course_student
-                                    join students on (course_student.student_id=students.id)
-                                    join courses on (course_student.course_id=courses.id)
-                                    group by students.student_code
-                                    order by student_code;");
-
+            
             foreach(preg_split('/\s+/', $term) as $word) {
                 $query->where(function($innerQuery) use ($word) {
                     return $innerQuery
@@ -41,7 +35,6 @@ class StudentController extends Controller
                 'term' => $term,
                 'title' => "{$this->title} : List",
                 'student' => $query->paginate(10),
-                'gpa' => $gpa,
             ]);
         }
 
@@ -63,22 +56,11 @@ class StudentController extends Controller
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $student->courses()->orderBy('course_code');
-            $course_student = DB::select("SELECT * from course_student
-                                            join students on (course_student.student_id=students.id)
-                                            join courses on (course_student.course_id=courses.id);");
-            $gpa = DB::select("SELECT sum(grade*credit)/sum(credit) as 'gpa',student_code
-                                from course_student
-                                join students on (course_student.student_id=students.id)
-                                join courses on (course_student.course_id=courses.id)
-                                group by students.student_code
-                                order by student_code;");
 
             return view('student-view', [
                 'title' => "{$this->title} : View",
                 'student' => $student,
                 'courses' => $query->paginate(10),
-                'course_student' => $course_student,
-                'gpa' => $gpa,
             ]);
         }
 

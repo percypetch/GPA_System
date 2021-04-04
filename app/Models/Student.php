@@ -12,7 +12,7 @@ class Student extends Model
     protected $fillable = ['student_code','student_name','student_year','student_phone','student_gender','student_gpa'];
     
     public function courses() {
-        return $this->belongsToMany(Course::class)->withPivot('grade');
+        return $this->belongsToMany(Course::class);
     }
     
 }
