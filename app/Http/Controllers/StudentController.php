@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\Student;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
+use App\Charts\StudentChart;
 
 class StudentController extends Controller
 {
@@ -41,6 +42,18 @@ class StudentController extends Controller
             'student' => $query->paginate(10),
             'gpa' => $gpa,
         ]);
+        }
+
+        function showChart(Request $request){
+            $tbl = Student::withCount('courses')->get();
+            $st = Student::withCount('courses')->pluck('courses_count', 'student_name');
+            $chart = new StudentChart;
+            $chart->labels($st->keys());
+            $chart->dataset('Course registed', 'bar', $st->values());
+            return view('student-chart', [
+                'chart' => $chart,
+                'tbl' => $tbl
+            ]);
         }
 
         function show(Request $request,$studentCode=0,$coursesCode=0) {
