@@ -5,8 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">
-                <button><a href="{{ route('teacher-view', ['teacher' => $teacher->teacher_code,]) }}">< Back</a></button>
-                <br />{{$title}}
+{{$title}}
                 </div>
 
                 <div class="card-body">
@@ -38,30 +37,14 @@
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                 <input type="text" name="teacher_name" size="50" value="{{ old('teacher_name')??$teacher->teacher_name }}" class="form-control" require>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>Phone</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="teacher_phone" size="50" value="{{ old('teacher_phone')??$teacher->teacher_phone }}">
-            </td>
-        </tr>
-
-
-        <tr>
-            <td>
-                <span class=""><b>Gender</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
+                </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                <input type="text" name="teacher_phone" size="50" value="{{ old('teacher_phone')??$teacher->teacher_phone }}"  class="form-control" maxlength="12">
+         </div>
+         <div class="input-group mb-3" style="width: 250px;">
+                <span class="input-group-text">Gender</span>
+                <div class="form-control">
             @if(old('teacher_gender')=='Male')
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" checked> Male </input>
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Female">Female</input>
@@ -78,24 +61,11 @@
             <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" > Male </input>
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Female">Female</input>
             @endif
-            </td>
-        </tr>
-
-        
-        <tr>
-            <td>
-
-
-
-            </td>
-            <td>
-
-            </td>
-            <td class="text-center">
-            <input type="submit">
-            </td>
-        </tr>
-        </table>
+            </div>
+            </div>
+            <div class="form-group row mb-0 justify-content-center">
+                 <button type="submit" class="btn btn-warning">Update</button>&nbsp
+             </div>
     </form>
     </main>
                     
