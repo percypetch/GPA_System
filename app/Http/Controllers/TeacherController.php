@@ -42,7 +42,7 @@ class TeacherController extends Controller
             $tc = Teacher::withCount('courses')->pluck('courses_count', 'teacher_name');
             $chart = new TeacherChart;
             $chart->labels($tc->keys());
-            $chart->dataset('Course Teaching', 'bar', $tc->values());
+            $chart->dataset('Course Teaching', 'bar', $tc->values())->backgroundColor('#1f821f');
             return view('teacher-chart', compact('chart', 'tbl'));
         }
 

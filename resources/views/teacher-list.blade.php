@@ -52,34 +52,40 @@
                     </form>
                     </div>
 
-                    {{ $teacher->withQueryString()->links() }}
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Code</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Gender</th>
-                            </tr>
-                        </thead>
-                        @foreach($teacher as $row)
-                        <tbody>
-                            <tr>
-                            <td> <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
-                                {{ $row->teacher_code }}</a></td>
-                            <td> <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
-                                {{ $row->teacher_name }}</a></td>
-                            <td>{{ $row->teacher_phone }}</td>
-                            <td>{{ $row->teacher_gender }}</td>
-                            </tr>
-                        @endforeach  
-                        </tbody>
-                    </table>
-                    
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div><br>
+
+
+{{ $teacher->withQueryString()->links() }}
+
+<div style="
+display: block;
+width: 1000px;
+margin-left:auto;
+margin-right:auto;
+padding-left: 50px;
+">                 
+@foreach($teacher as $row)
+
+    <div class="card img-thumbnail " style="width: 18rem; display:inline-block;">
+        @if($row->teacher_gender == 'Male')
+        <img src="{{ asset('/person/teacher-male1.jpg') }}" class="card-img-top" alt="">
+        @else
+            <img src="{{ asset('/person/teacher-female1.jpg') }}" class="card-img-top" alt="">
+        @endif
+        <div class="card-body">
+            <h5 class="card-title"><a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
+        {{ $row->teacher_code }}</a></h5>
+            <p class="card-text"><a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}">
+        {{ $row->teacher_name }}</a></p>
+            <p class="card-text">Phone : {{ $row->teacher_phone }}</p>
+            <a href="{{ route('teacher-view', ['teacher' => $row->teacher_code,]) }}" class="btn btn-primary">More Detail</a>
+        </div>
+    </div>
+@endforeach 
+</div> 
 @endsection

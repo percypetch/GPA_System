@@ -49,42 +49,42 @@
                     <input type="text" name="term" value="{{ $term }} " class="form-control" placeholder="Search" />
                     </div>
                     </form>
-                    </div>
-
-
-                    {{ $student->withQueryString()->links() }}
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Code</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Gender</th>
-                            </tr>
-                        </thead>
-                        
-                        @foreach($student as $row)
-                        
-                        <tbody>
-                            <tr>
-                            <td> <a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
-                                {{ $row->student_code }}</a></td>
-                            <td> <a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
-                                {{ $row->student_name }}</a></td>
-                            <td>{{ $row->student_gender }}</td>
-                            </tr>
-                        
-                        @endforeach  
-                     
-                        </tbody>
-                    </table>
-                    
-                    
-                    
+                    </div>                        
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div><br>
+
+
+
+{{ $student->withQueryString()->links() }}
+
+<div style="
+display: block;
+width: 1000px;
+margin-left:auto;
+margin-right:auto;
+padding-left: 50px;
+">
+
+  @foreach($student as $row)
+
+<div class="card img-thumbnail " style="width: 18rem; display:inline-block;">
+    @if($row->student_gender == 'Male')
+      <img src="{{ asset('/person/male1.jpg') }}" class="card-img-top" alt="">
+    @else
+        <img src="{{ asset('/person/female1.jpg') }}" class="card-img-top" alt="">
+    @endif
+      <div class="card-body">
+          <h5 class="card-title"><a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
+          {{ $row->student_code }}</a></h5>
+          <p class="card-text"><a href="{{ route('student-view', ['student' => $row->student_code,]) }}">{{ $row->student_name }}</a></p>
+          <p class="card-text">Year : {{ $row->student_year }}</p>
+          <a href="{{ route('student-view', ['student' => $row->student_code,]) }}" class="btn btn-primary">More Detail</a>
+      </div>
+  </div>
+  @endforeach  
+ </div>
 
 @endsection

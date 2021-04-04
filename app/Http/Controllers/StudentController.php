@@ -49,7 +49,7 @@ class StudentController extends Controller
             $st = Student::withCount('courses')->pluck('courses_count', 'student_name');
             $chart = new StudentChart;
             $chart->labels($st->keys());
-            $chart->dataset('Course registed', 'bar', $st->values());
+            $chart->dataset('Course registed', 'bar', $st->values())->backgroundColor('#ff94d1');
             return view('student-chart', [
                 'chart' => $chart,
                 'tbl' => $tbl

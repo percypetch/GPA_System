@@ -52,39 +52,39 @@
                     </form>
                     </div>
 
-                    {{ $course->withQueryString()->links() }}
 
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                            <th scope="col">Code</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Credit</th>
-                            @can('update', \App\Models\Course::class)
-                            <th scope="col">Number of Students</th>
-                            @endcan
-                            </tr>
-                        </thead>
-                        @foreach($course as $row)
-                        <tbody>
-                            <tr>
-                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
-                                {{ $row->course_code }}</a></td>
-                            <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
-                                {{ $row->course_name }}</a></td>
-                            <td>{{ $row->credit }}</td>
-                            @can('update', \App\Models\Course::class)
-                            <td>{{ $row->students_count }}</td>
-                            @endcan
-                            </tr>
-                        @endforeach  
-                        </tbody>
-                    </table>
-                    
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div><br>
+<div style="
+display: block;
+width: 1000px;
+margin-left:auto;
+margin-right:auto;
+padding-left: 50px;
+">
+{{ $course->withQueryString()->links() }}
 
+@foreach($course as $row)
+
+    <div class="card img-thumbnail " style="width: 18rem; display:inline-block;">
+        <img src="{{ asset('/person/course.jpg') }}" class="card-img-top" alt="">
+     
+        <div class="card-body">
+            <h5 class="card-title"><a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+        {{ $row->course_code }}</a></h5>
+            <p class="card-text"><a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
+        {{ $row->course_name }}</a></p>
+        <p style="width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;">{{ $row->descriptions }}</p>
+            <a href="{{ route('course-view', ['course' => $row->course_code,]) }}" class="btn btn-primary">More Detail</a>
+            
+        </div>
+    </div>
+@endforeach
+</div>  
 @endsection

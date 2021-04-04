@@ -24,6 +24,7 @@
                             <th scope="col">Course Code</th>
                             <th scope="col">Course Name</th>
                             <th scope="col">Students Enrolled</th>
+                            <th scope="col">Teachers Teached</th>
                             </tr>
                         </thead>
                         @foreach($tbl as $row)
@@ -33,6 +34,7 @@
                                 {{ $row->course_code }}</a></td>
                             <td>{{ $row->course_name }}</td>
                             <td>{{ $row->students_count }}</td>
+                            <td>{{ $row->teachers_count }}</td>
                             </tr>
                         @endforeach  
                         </tbody>

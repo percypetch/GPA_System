@@ -35,11 +35,13 @@ class CourseController extends Controller
     }
 
     function showChart(Request $request){
-        $tbl = Course::withCount('students')->get();
+        $tbl = Course::withCount('students')->withCount('teachers')->get();
         $cs = Course::withCount('students')->pluck('students_count', 'course_name');
+        $tcs = Course::withCount('teachers')->pluck('teachers_count', 'course_name');
         $chart = new CourseChart;
         $chart->labels($cs->keys());
-        $chart->dataset('Student number', 'bar', $cs->values());
+        $chart->dataset('Student number', 'bar', $cs->values())->backgroundColor('#edc242');
+        $chart->dataset('Teacher number', 'bar', $tcs->values())->backgroundColor('#638dff');;
         return view('course-chart', [
             'chart' => $chart,
             'tbl' => $tbl
