@@ -17,32 +17,32 @@ class StudentController extends Controller
         $this->middleware('auth');
     }
 
-    function list(Request $request) {
-        $this->authorize('update',Student::class);
-        $data = $request->getQueryParams();
-        $query = Student::orderBy('student_code');//->withCount('shops');
-        $term = (key_exists('term', $data))? $data['term'] : '';
-        $gpa = DB::select("SELECT sum(grade*credit)/sum(credit) as 'gpa',student_code
-                                from course_student
-                                join students on (course_student.student_id=students.id)
-                                join courses on (course_student.course_id=courses.id)
-                                group by students.student_code
-                                order by student_code;");
+        function list(Request $request) {
+            $this->authorize('update',Student::class);
+            $data = $request->getQueryParams();
+            $query = Student::orderBy('student_code');
+            $term = (key_exists('term', $data))? $data['term'] : '';
+            $gpa = DB::select("SELECT sum(grade*credit)/sum(credit) as 'gpa',student_code
+                                    from course_student
+                                    join students on (course_student.student_id=students.id)
+                                    join courses on (course_student.course_id=courses.id)
+                                    group by students.student_code
+                                    order by student_code;");
 
-        foreach(preg_split('/\s+/', $term) as $word) {
-            $query->where(function($innerQuery) use ($word) {
-                return $innerQuery
-                    ->where('student_code', 'LIKE', "%{$word}%")
-                    ->orWhere('student_name', 'LIKE', "%{$word}%"); 
-                });
-            }
-            
-        return view('student-list', [
-            'term' => $term,
-            'title' => "{$this->title} : List",
-            'student' => $query->paginate(10),
-            'gpa' => $gpa,
-        ]);
+            foreach(preg_split('/\s+/', $term) as $word) {
+                $query->where(function($innerQuery) use ($word) {
+                    return $innerQuery
+                        ->where('student_code', 'LIKE', "%{$word}%")
+                        ->orWhere('student_name', 'LIKE', "%{$word}%"); 
+                    });
+                }
+                
+            return view('student-list', [
+                'term' => $term,
+                'title' => "{$this->title} : List",
+                'student' => $query->paginate(10),
+                'gpa' => $gpa,
+            ]);
         }
 
         function showChart(Request $request){
@@ -80,14 +80,13 @@ class StudentController extends Controller
                 'course_student' => $course_student,
                 'gpa' => $gpa,
             ]);
-            }
+        }
 
         function createForm(Request $request) {
             $this->authorize('update',Student::class);
            
             return view('student-create', [
             'title' => "{$this->title} : Create",
-  
             ]);
         }
 
@@ -107,11 +106,10 @@ class StudentController extends Controller
 
             catch(\Exception $excp) 
             {
-                return back()->withInput()->withErrors([
+                return back()->withInput()->with('error', "Duplicated 'Code' number. Please use another number.");([
                 'input' => $excp->getMessage(),
                 ]);
             }
-        
         }
 
         function updateForm($studentCode) {
@@ -121,7 +119,6 @@ class StudentController extends Controller
             return view('student-update', [
               'title' => "{$this->title} : Update",
               'student' => $student,
-             // 'year' => $student->student_year,
             ]);
         }
     
@@ -164,8 +161,8 @@ class StudentController extends Controller
             $data = $request->getQueryParams();
             $query = Course::orderBy('course_code')->whereDoesntHave('students', function($innerQuery) use ($student) {
                 $innerQuery->where('id', $student->id);
-        })
-        ;
+             });
+             
             $term = (key_exists('term', $data))? $data['term'] : '';
             foreach(preg_split('/\s+/', $term) as $word) {
                 $query->where(function($innerQuery) use ($word) {
@@ -193,7 +190,7 @@ class StudentController extends Controller
             return back()
             ->with('status', "Course {$data['courseCode']} was added to Student {$student->student_code}.");
             ;
-            }
+        }
 
         function removeCourse($studentCode, $courseCode) {
             $this->authorize('update',Student::class);
@@ -205,5 +202,5 @@ class StudentController extends Controller
             return back()
             ->with('status', "Course {$course->course_code} was removed from Student {$student->student_code}.");
             ;
-            }
+        }
 }

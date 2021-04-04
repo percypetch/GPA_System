@@ -19,7 +19,7 @@ class TeacherController extends Controller
 
     function list(Request $request) {
         $data = $request->getQueryParams();
-        $query = Teacher::orderBy('teacher_code');//->withCount('shops');
+        $query = Teacher::orderBy('teacher_code');
         $term = (key_exists('term', $data))? $data['term'] : '';
 
         foreach(preg_split('/\s+/', $term) as $word) {
@@ -83,7 +83,7 @@ class TeacherController extends Controller
 
             catch(\Exception $excp) 
             {
-                return back()->withInput()->withErrors([
+                return back()->withInput()->with('error', "Duplicated 'Code' number. Please use another number.");([
                 'input' => $excp->getMessage(),
                 ]);
             }
@@ -97,7 +97,6 @@ class TeacherController extends Controller
             return view('teacher-update', [
               'title' => "{$this->title} : Update",
               'teacher' => $teacher,
-             // 'year' => $teacher->teacher_year,
             ]);
         }
     
@@ -122,6 +121,7 @@ class TeacherController extends Controller
                 'input' => $excp->getMessage(),
                 ]);
             }
+    
           }
     
         function delete($teacherCode) {
@@ -168,7 +168,7 @@ class TeacherController extends Controller
             return back()
             ->with('status', "Course {$data['courseCode']} was added to Teacher {$teacher->teacher_code}.");
             ;
-            }
+        }
 
         function removeCourse($teacherCode, $courseCode) {
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
@@ -179,5 +179,5 @@ class TeacherController extends Controller
             return back()
             ->with('status', "Course {$course->course_code} was removed from Teacher {$teacher->teacher_code}.");
             ;
-            }
+        }
 }
