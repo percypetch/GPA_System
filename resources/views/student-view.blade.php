@@ -23,9 +23,6 @@
                 @endcan
                 </nav>
                 </div>
-                
-
-
                 </div>
 
                 <div class="card-body">
@@ -46,20 +43,27 @@
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
+                    <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Code</b></span>
+            <input type="text"value="{{ $student->student_code }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Name</b></span>
+            <input type="text"value="{{ $student->student_name }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Gender</b></span>
+            <input type="text"value="{{ $student->student_gender }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Year</b></span>
+            <input type="text"value="{{ $student->student_year }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Phone</b></span>
+            <input type="text"value="{{ $student->student_phone }}" class="form-control" style="background-color:white;" disabled>
+            </div>
 
-
-                    Code :: {{ $student->student_code }} <br>
-                    Name ::{{ $student->student_name }} <br>
-                    Gender ::{{ $student->student_gender }} <br>
-                    Year ::{{ $student->student_year }} <br>
-                    Phone contact ::{{ $student->student_phone }} <br>
-                    <br>
-
-
-                    
-                    
-                    
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
                     <table class="table text-center">
                         <thead>
                         Courses
@@ -78,7 +82,7 @@
                         <tbody>
                             <tr>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
-                                {{ $row->course_code }}</a></td>
+                                <b>{{ $row->course_code }}</b></a></td>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
