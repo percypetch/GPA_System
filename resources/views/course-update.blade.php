@@ -42,11 +42,23 @@
         <div class="input-group mb-3" style="width: 250px;">
                 <span class="input-group-text">Credit</span>
                 <select id="credit" name="credit" class="form-control" style="width:10px;">
-                    @for($i=1 ; $i<=3 ; $i++)
+                <select id="student_year" name="student_year" > 
+                @for($i=1 ; $i<=4 ; $i++)
+                    @if(old('student_year') == $i)
+                        <option selected value="{{ $i }}">  
+                        {{ $i }}
+                        </option>              
+                    @elseif($student->student_year == $i && old('student_year') == '')
+                        <option selected value="{{ $i }}">  
+                        {{ $i }}
+                        </option>
+                    @else
                         <option value="{{ $i }}">  
                         {{ $i }}
                         </option>
-                    @endfor
+                    @endif
+                @endfor
+                </select>
                     </select>
         </div>
         <div class="form-floating">
