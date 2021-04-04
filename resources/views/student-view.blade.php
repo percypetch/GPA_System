@@ -5,6 +5,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">{{$title}} {{ $student->student_code }}
+                @if($student->student_gender == 'Male')
+                <img src="{{ asset('/person/male1.jpg') }}" class="card-img-top" alt="">
+                @else
+                <img src="{{ asset('/person/female1.jpg') }}" class="card-img-top" alt="">
+                @endif
                 <div class="text-center">
                 <nav>
                 @can('update', \App\Models\Student::class)

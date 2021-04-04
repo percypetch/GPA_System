@@ -6,6 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">{{$title}} {{ $course->course_code }}
+
+        <img src="{{ asset('/person/course.jpg') }}" class="card-img-top" alt="">
                 <div class="text-center">
                 <nav>
                 @can('update', \App\Models\Course::class)
@@ -42,18 +44,27 @@
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-
-
-                    Code :: {{ $course->course_code }} <br>
-                    Name :: {{ $course->course_name }} <br>
-                    Credit :: {{ $course->credit }} <br>
-                    Description :: {{ $course->descriptions }} <br>
-
-                    @can('update', \App\Models\Course::class)
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100px;"><b>Code</b></span>
+            <input type="text"value="{{ $course->course_code }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100px;"><b>Name</b></span>
+            <input type="text"value="{{ $course->course_name }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100px;"><b>Credit</b></span>
+            <input type="text"value="{{ $course->credit }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 100px;"><b>Description</b></span>
+            <textarea name="descriptions"class="form-control" style="background-color:white;" placeholder="Course descriptions." id="floatingTextarea2" style="height: 100px" disabled>{{ $course->descriptions }}</textarea>
+            </div>
+             @can('update', \App\Models\Course::class)
+                    <br>
                     <table class="table text-center">
                         <thead>
-                        Students
+                        <h5>Students in course.</h5>
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
@@ -76,10 +87,10 @@
                     </table>
                     @endcan
                     
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br>
                     <table class="table text-center">
                         <thead>
-                        Teachers
+                        <h5>Teachers in course.</h5>
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>

@@ -5,6 +5,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">{{$title}} {{ $teacher->teacher_code }}
+                @if($teacher->teacher_gender == 'Male')
+                <img src="{{ asset('/person/teacher-male1.jpg') }}" class="card-img-top" alt="">
+                @else
+                <img src="{{ asset('/person/teacher-female1.jpg') }}" class="card-img-top" alt="">
+                @endif
                 <div class="text-center">
                 <nav>
                 @can('update', \App\Models\Teacher::class)
@@ -23,9 +28,6 @@
                 @endcan
                 </nav>
                 </div>
-                
-
-
                 </div>
 
                 <div class="card-body">
@@ -46,17 +48,26 @@
                         <strong>{{ $message }}</strong>
                     </div>
                     @endif
-
-
-                    Code :: {{ $teacher->teacher_code }} <br>
-                    Name ::{{ $teacher->teacher_name }} <br>
-                    Gender ::{{ $teacher->teacher_gender }} <br>
-                    Phone contact ::{{ $teacher->teacher_phone }} <br>
-                    
-                    <br><br><br><br><br><br>
+                    <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Code</b></span>
+            <input type="text"value="{{ $teacher->teacher_code }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Name</b></span>
+            <input type="text"value="{{ $teacher->teacher_name }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Gender</b></span>
+            <input type="text"value="{{ $teacher->teacher_gender }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 80px;"><b>Phone</b></span>
+            <input type="text"value="{{ $teacher->teacher_phone }}" class="form-control" style="background-color:white;" disabled>
+            </div>
+            <br>
                     <table class="table text-center">
                         <thead>
-                        Courses
+                        <h5>Student in courses </h5>
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
