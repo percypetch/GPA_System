@@ -49,7 +49,7 @@
                                 {{ $row->course_code }}</a></td>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
-                            <td>$cal_stu</td>
+                            <td>{{ $row->students_count }}</td>
                             <td class="normal"width=20px >
                                 <button type="submit" name="course" value="{{ $row->id }}">Add</button>
                                 <input type="hidden" name="courseCode" value="{{ $row->course_code }}">

@@ -79,7 +79,7 @@
                     <nav>
                         <ul class="navbar-nav mr-auto">
                             <li><span class="text-light">{{ \Auth::user()->name }}</span></li> &nbsp&nbsp&nbsp
-                            <li><a href="{{ route('logout') }}">Logout</a></li>
+                            <li><a href="{{ route('logout') }}"><button type="button" class="btn btn-danger">Logout</button></a></li>
                         </ul>
                     </nav>
                                 </div>

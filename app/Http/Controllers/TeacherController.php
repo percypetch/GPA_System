@@ -140,7 +140,7 @@ class TeacherController extends Controller
             $this->authorize('update',Teacher::class);
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $data = $request->getQueryParams();
-            $query = Course::orderBy('course_code')->whereDoesntHave('teachers', function($innerQuery) use ($teacher) {
+            $query = Course::orderBy('course_code')->withCount('students')->whereDoesntHave('teachers', function($innerQuery) use ($teacher) {
                 $innerQuery->where('id', $teacher->id);
             });
             $term = (key_exists('term', $data))? $data['term'] : '';
