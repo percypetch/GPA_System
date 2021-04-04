@@ -40,7 +40,7 @@ class StudentController extends Controller
             return view('student-list', [
                 'term' => $term,
                 'title' => "{$this->title} : List",
-                'student' => $query->paginate(10),
+                'student' => $query->paginate(100),
                 'gpa' => $gpa,
             ]);
         }

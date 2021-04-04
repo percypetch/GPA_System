@@ -57,9 +57,9 @@
 </div><br>
 
 
-
+<nav aria-label="Page navigation example">
 {{ $student->withQueryString()->links() }}
-
+</nav>
 <div style="
 display: block;
 width: 1000px;
