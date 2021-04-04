@@ -55,18 +55,24 @@
                             <th scope="col">Gpa</th>
                             </tr>
                         </thead>
+                        @foreach($gpa as $gpa)
                         @foreach($student as $row)
+                        @if($row->student_code == $gpa->student_code)
                         <tbody>
                             <tr>
                             <td> <a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
                                 {{ $row->student_code }}</a></td>
                             <td> <a href="{{ route('student-view', ['student' => $row->student_code,]) }}">
                                 {{ $row->student_name }}</a></td>
-                            <td>{{ $row->student_gpa }}</td>
+                            <td>{{ $gpa->gpa }}</td>
                             </tr>
+                            @endif
                         @endforeach  
+                        @endforeach
                         </tbody>
                     </table>
+                    
+                    
                     
                 </div>
             </div>

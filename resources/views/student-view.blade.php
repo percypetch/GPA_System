@@ -114,7 +114,12 @@
                         </tbody>
                     </table>
 
-                    GPA ::{{ $student->student_gpa }}
+                    @foreach($gpa as $gpa)
+                    @if($student->student_code == $gpa->student_code)
+                    GPA ::{{ $gpa->gpa }}
+                    @endif
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
