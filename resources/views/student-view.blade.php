@@ -73,7 +73,10 @@
                             @endcan
                             </tr>
                         </thead>
+
                         @foreach($courses as $row)
+                        @foreach($course_student as $num)
+                        @if($student->student_code == $num->student_code and $row->course_code == $num->course_code)
                         <tbody>
                             <tr>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
@@ -81,49 +84,18 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
+                            <td>{{$num->course_id}}</td>
                             @can('update', \App\Models\Student::class)
                             <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}">Remove</a></td>
-                            @endcan
-                            </tr>
-                        @endforeach  
-                        </tbody>
-                    </table>
-
-                    <table class="table text-center">
-                        <thead>
-                        Grade
-                            <tr>
-                            <th scope="col">C_id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">S_id</th>
-                            <th scope="col">Grade</th>
-                            @can('update', \App\Models\Student::class)
-                            <th scope="col">&nbsp</th>
-                            @endcan
-                            </tr>
-                        </thead>
-                        @foreach($courses as $row)
-                        @foreach($course_student as $num)
-                        @if($student->student_code == $row->student_code)
-                        <tbody>
-                            <tr>
-                            <td>  {{ $row->course_code }} </td>
-                            <td>  {{ $row->course_name }} </td>
-                            <td>  </td>
-                            
-                            <td>
-                            {{$num->grade}}
-                            </td>
-                        </form>
-                            @can('update', \App\Models\Student::class)
-                            <td>Remove</td>
                             @endcan
                             </tr>
                         @endif
                         @endforeach
                         @endforeach  
+
                         </tbody>
                     </table>
+
                     <form action="{{ route('student-view', ['student' => $student->student_code]) }}" method="get">
                                 <select id="student_year" name="student_year">
                                     <option value=NULL> </option> 
@@ -136,8 +108,6 @@
                                     <option value="1">D</option>
                                     <option value="0">F</option>    
                                 </select>
-
-                         
 
                     GPA ::{{ $student->student_gpa }}
                 </div>
