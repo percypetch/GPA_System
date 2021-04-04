@@ -40,7 +40,9 @@ class StudentController extends Controller
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $student->courses()->orderBy('course_code');
-            $course_student = DB::table('course_student')->where('student_id', 1)->get();
+            $course_student = DB::select("SELECT *from course_student
+            join students on (course_student.student_id=students.id);");
+            
 
             return view('student-view', [
                 'title' => "{$this->title} : View",
