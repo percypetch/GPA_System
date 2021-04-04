@@ -5,8 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">
-                <button><a href="{{ route('course-view', ['course' => $course->course_code,]) }}">< Back</a></button>
-                <br />{{$title}}
+{{$title}}
                 </div>
 
                 <div class="card-body">
@@ -60,10 +59,10 @@
                 </select>
         </div>
         <div class="form-floating">
-                <textarea name="descriptions"class="form-control" placeholder="Course descriptions." id="floatingTextarea2" style="height: 100px">{{ old('descriptions')?? $course->descriptions }}</textarea>
+                <textarea name="descriptions"class="form-control" placeholder="Course descriptions." id="floatingTextarea2" style="height: 100px" required>{{ old('descriptions')?? $course->descriptions }}</textarea>
                 </div><br>
         <div class="form-group row mb-0 justify-content-center">
-                 <button type="submit" class="btn btn-success">Submit</button>&nbsp
+                 <button type="submit" class="btn btn-warning">Update</button>&nbsp
         </div>
     </form>
     </main>

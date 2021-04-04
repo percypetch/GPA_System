@@ -47,19 +47,19 @@
                 <div class="form-control">
             @if(old('teacher_gender')=='Male')
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" checked> Male </input>
-                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female">Female</input>
+                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"> Female</input>
             @elseif(old('teacher_gender')=='Female')
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" > Male </input>
-                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"checked>Female</input>
+                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"checked> Female</input>
             @elseif($teacher->teacher_gender=='Male' )
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" checked> Male </input>
-                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female">Female</input>
+                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"> Female</input>
             @elseif($teacher->teacher_gender=='Female')
                 <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" > Male </input>
-                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"checked>Female</input>
+                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"checked> Female</input>
             @else
             <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" > Male </input>
-                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female">Female</input>
+                <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"> Female</input>
             @endif
             </div>
             </div>
