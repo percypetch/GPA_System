@@ -31,7 +31,7 @@
 
                     <form action="{{ route('teacher-add-course', ['teacher' => $teacher->teacher_code,]) }}" method="post">
         @csrf
-            <table class="table">
+            <table class="table text-center">
                 <thed>
                     <tr>
                         <th class="bg">Code</th>
@@ -43,7 +43,6 @@
 
                 <tbody>
                     @foreach($courses as $row)
-                        <tbody>
                             <tr>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_code }}</a></td>
@@ -51,7 +50,7 @@
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->students_count }}</td>
                             <td class="normal"width=20px >
-                                <button type="submit" name="course" value="{{ $row->id }}">Add</button>
+                                <button type="submit" name="course" value="{{ $row->id }}" class="btn btn-info">Add</button>
                                 <input type="hidden" name="courseCode" value="{{ $row->course_code }}">
                             </td>
                             </tr>

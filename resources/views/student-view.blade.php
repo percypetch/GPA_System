@@ -96,7 +96,7 @@
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
                             @can('update', \App\Models\Student::class)
-                            <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}">Remove</a></td>
+                            <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}"><button type="button" class="btn btn-danger">Remove</button></a></td>
                             @endcan
                             </tr>
                         @endforeach  

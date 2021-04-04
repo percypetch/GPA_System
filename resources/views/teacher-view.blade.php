@@ -87,7 +87,7 @@
                                 {{ $row->course_name }}</a></td>
                             @can('update', \App\Models\Course::class)   
                             <td>{{ $row->students_count }}</td>
-                            <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}">Remove</a></td>
+                            <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}"><button type="button" class="btn btn-danger">Remove</button></a></td>
                             @endcan
                             </tr>
                         @endforeach

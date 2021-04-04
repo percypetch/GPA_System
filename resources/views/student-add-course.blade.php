@@ -31,7 +31,7 @@
 
                     <form action="{{ route('student-add-course', ['student' => $student->student_code,]) }}" method="post">
         @csrf
-            <table>
+            <table class="table text-center">
                 <thed>
                     <tr>
                         <th class="bg">Code</th>
@@ -50,7 +50,7 @@
                             <td class="normal" width=400px>{{ $course->course_name }}</td>
                             <td class="normal"  width=200px>{{ $course->credit }}</td>
                             <td class="normal"width=20px >
-                                <button type="submit" name="course" value="{{ $course->id }}">Add</button>
+                                <button type="submit" name="course" value="{{ $course->id }}" class="btn btn-info">Add</button>
                                 <input type="hidden" name="courseCode" value="{{ $course->course_code }}">
                             </td>
                         </tr>

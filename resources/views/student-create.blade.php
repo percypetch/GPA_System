@@ -58,8 +58,10 @@
         </div>
         <div class="input-group mb-3" style="width: 250px;">
                 <span class="input-group-text">Gender</span>
+                <div class="form-control">
                     <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
-                    <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+                    <input type="radio" id="student_gender" name="student_gender" value="Female"> Female</input>
+        </div>
         </div>
         <div class="form-group row mb-0 justify-content-center">
                  <button type="submit" class="btn btn-success">Submit</button>&nbsp
@@ -67,7 +69,7 @@
         </div>
     </form>
     </main>
-                    
+
                 </div>
             </div>
         </div>
