@@ -100,7 +100,7 @@
                 @error('input')
                     <div style="color:red;">{{ $message }}</div>
                 @enderror
-            @yield('content')
+                @yield('content')
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js" charset="utf-8"></script>
     </div>
