@@ -36,7 +36,6 @@ class StudentController extends Controller
                 'title' => "{$this->title} : List",
                 'student' => $query->paginate(10),
                 'student' => $query->paginate(100),
-                'gpa' => $gpa,
             ]);
         }
 
