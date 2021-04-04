@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Teacher;
 use App\Models\Course;
+use App\Charts\TeacherChart;
 
 class TeacherController extends Controller
 {
@@ -34,6 +35,15 @@ class TeacherController extends Controller
             'title' => "{$this->title} : List",
             'teacher' => $query->paginate(10),
         ]);
+        }
+
+        function showChart(Request $request){
+            $tbl = Teacher::withCount('courses')->get();
+            $tc = Teacher::withCount('courses')->pluck('courses_count', 'teacher_name');
+            $chart = new TeacherChart;
+            $chart->labels($tc->keys());
+            $chart->dataset('Course Teaching', 'bar', $tc->values());
+            return view('teacher-chart', compact('chart', 'tbl'));
         }
 
         function show(Request $request,$teacherCode=0,$coursesCode=0) {

@@ -63,6 +63,9 @@ Route::get('/student/{student}/course/{course}/remove',[StudentController::class
 Route::get('/teacher', [TeacherController::class, 'list'])
 ->name('teacher-list');
 
+Route::get('/teacher-chart', [TeacherController::class, 'showChart'])
+->name('teacher-chart');
+
 Route::get('/teacher/create', [TeacherController::class, 'createForm'])
 ->name('teacher-create-form');
 
@@ -96,6 +99,9 @@ Route::get('/teacher/{teacher}/course/{course}/remove',[TeacherController::class
 
 Route::get('/course', [CourseController::class, 'list'])
 ->name('course-list');
+
+Route::get('/course-chart', [CourseController::class, 'showChart'])
+->name('course-chart');
 
 Route::get('/course/create', [CourseController::class, 'createForm'])
 ->name('course-create-form');

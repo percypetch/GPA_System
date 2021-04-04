@@ -5,7 +5,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">
-                    {{$title}}
+                <button><a href="/course">< Back</a></button>
+                <br />{{$title}}
                 </div>
 
                 <div class="card-body">

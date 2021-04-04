@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
+use App\Charts\CourseChart;
 
 class CourseController extends Controller
 {
@@ -33,6 +34,17 @@ class CourseController extends Controller
         
     }
 
+    function showChart(Request $request){
+        $tbl = Course::withCount('students')->get();
+        $cs = Course::withCount('students')->pluck('students_count', 'course_name');
+        $chart = new CourseChart;
+        $chart->labels($cs->keys());
+        $chart->dataset('Student number', 'bar', $cs->values());
+        return view('course-chart', [
+            'chart' => $chart,
+            'tbl' => $tbl
+        ]);
+    }
 
     function show(Request $request,$courseCode=0,$studentCode=0) {
         $course = Course::where('course_code', $courseCode)->firstOrFail();
