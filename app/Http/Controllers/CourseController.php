@@ -35,11 +35,15 @@ class CourseController extends Controller
     }
 
     function showChart(Request $request){
-        $cs = Course::withCount('students')->pluck('students_count', 'course_code');
+        $tbl = Course::withCount('students')->get();
+        $cs = Course::withCount('students')->pluck('students_count', 'course_name');
         $chart = new CourseChart;
         $chart->labels($cs->keys());
         $chart->dataset('Student number', 'bar', $cs->values());
-        return view('course-chart', compact('chart'));
+        return view('course-chart', [
+            'chart' => $chart,
+            'tbl' => $tbl
+        ]);
     }
 
     function show(Request $request,$courseCode=0,$studentCode=0) {

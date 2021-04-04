@@ -15,6 +15,9 @@
                         <li class="list-group-item">
                             <a href="/teacher/create">Key in Teacher Data</a> 
                         </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('teacher-chart') }}">Teacher Chart</a> 
+                        </li>
                         </ul>
                 @endcan
                 </nav>
