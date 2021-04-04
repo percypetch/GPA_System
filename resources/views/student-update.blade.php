@@ -105,7 +105,13 @@
                 <span class = "bluecolor">:: </span>
             </td>
             <td>
-            @if($student->student_gender=='Male')
+            @if(old('student_gender')=='Male')
+                <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+            @elseif(old('student_gender')=='Female')
+                <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"checked>Female</input>
+            @elseif($student->student_gender=='Male')
                 <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
                 <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
             @elseif($student->student_gender=='Female')
