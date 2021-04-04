@@ -7,6 +7,7 @@
                 <div class="card-header ">{{$title}} {{ $teacher->teacher_code }}
                 <div class="text-center">
                 <nav>
+                @can('update', \App\Models\Teacher::class)
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
@@ -19,6 +20,7 @@
                         <a href="{{ route('teacher-delete',['teacher' => $teacher->teacher_code,]) }}">Delete</a>
                         </li>
                     </ul>
+                @endcan
                 </nav>
                 </div>
                 
@@ -59,7 +61,9 @@
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Number of Students</th>
+                            @can('update', \App\Models\Teacher::class)
                             <th scope="col">&nbsp</th>
+                            @endcan
                             </tr>
                         </thead>
                         @foreach($courses as $row)
@@ -70,7 +74,9 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->stu_num }}</td>
+                            @can('update', \App\Models\Teacher::class)
                             <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}">Remove</a></td>
+                            @endcan
                             </tr>
                         @endforeach
                         @foreach($cal_stu as $row)

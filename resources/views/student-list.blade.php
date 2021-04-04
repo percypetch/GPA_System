@@ -10,11 +10,13 @@
                 <div class="text-center">
                 <nav>
                     <br>
+                    @can('update', \App\Models\Student::class)
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
                             <a href="/student/create">Key in Student Data</a> 
                         </li>
                         </ul>
+                    @endcan
                 </nav>
                 </div>
                 </div>

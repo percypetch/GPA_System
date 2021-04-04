@@ -9,12 +9,14 @@
 
                 <div class="text-center">
                 <nav>
+                @can('update', \App\Models\Teacher::class)
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
                             <a href="/teacher/create">Key in Teacher Data</a> 
                         </li>
                         </ul>
+                @endcan
                 </nav>
                 </div>
                 </div>

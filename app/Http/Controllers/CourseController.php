@@ -57,6 +57,7 @@ class CourseController extends Controller
     }
     
     function create(Request $request) {
+        $this->authorize('update',Course::class);
         try{
             $this->authorize('update',Student::class);
             $data = $request->getParsedBody();
@@ -75,7 +76,7 @@ class CourseController extends Controller
     }
         
     function updateForm($courseCode) {
-        $this->authorize('update',Student::class);
+        $this->authorize('update',Course::class);
         $course = Course::where('course_code', $courseCode)->firstOrFail();
            
         return view('course-update', [
@@ -86,7 +87,7 @@ class CourseController extends Controller
     }
     
     function update(Request $request, $courseCode) {
-        $this->authorize('update',Student::class);
+        $this->authorize('update',Course::class);
         try{
             $course = Course::where('course_code', $courseCode)->FirstOrFail(); 
             $data = $request->getParsedBody();
@@ -105,7 +106,7 @@ class CourseController extends Controller
     }
 
     function delete($courseCode) {
-        $this->authorize('update',Student::class);
+        $this->authorize('update',Course::class);
         $course = Course::where('course_code', $courseCode)->firstOrFail();
         $course->delete();
         return redirect()->route('course-list')->with('status', "Course {$course->course_code} was deleted.");

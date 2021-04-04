@@ -10,12 +10,14 @@
                     {{ $title }}
                 <div class="text-center">
                 <nav>
+                @can('update', \App\Models\Course::class)
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
                             <a href="{{ route('course-create-form') }}">Key in Course Data</a> 
                         </li>
                         </ul>
+                @endcan
                 </nav>
                 </div>
                 </div>
@@ -46,13 +48,15 @@
 
                     {{ $course->withQueryString()->links() }}
 
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Credit</th>
+                            @can('update', \App\Models\Course::class)
                             <th scope="col">Number of Students</th>
+                            @endcan
                             </tr>
                         </thead>
                         @foreach($course as $row)
@@ -63,7 +67,9 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
+                            @can('update', \App\Models\Course::class)
                             <td>{{ $row->students_count }}</td>
+                            @endcan
                             </tr>
                         @endforeach  
                         </tbody>

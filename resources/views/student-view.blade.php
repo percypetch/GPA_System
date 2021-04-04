@@ -7,6 +7,7 @@
                 <div class="card-header ">{{$title}} {{ $student->student_code }}
                 <div class="text-center">
                 <nav>
+                @can('update', \App\Models\Student::class)
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
@@ -19,6 +20,7 @@
                         <a href="{{ route('student-delete',['student' => $student->student_code,]) }}">Delete</a>
                         </li>
                     </ul>
+                @endcan
                 </nav>
                 </div>
                 
@@ -64,7 +66,9 @@
                             <th scope="col">Name</th>
                             <th scope="col">Credit</th>
                             <th scope="col">Grade</th>
+                            @can('update', \App\Models\Student::class)
                             <th scope="col">&nbsp</th>
+                            @endcan
                             </tr>
                         </thead>
                         @foreach($courses as $row)
@@ -76,7 +80,9 @@
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
                             <td>$grade</td>
+                            @can('update', \App\Models\Student::class)
                             <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}">Remove</a></td>
+                            @endcan
                             </tr>
                         @endforeach  
                         </tbody>

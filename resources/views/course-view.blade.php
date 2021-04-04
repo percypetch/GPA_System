@@ -8,6 +8,7 @@
                 <div class="card-header ">{{$title}} {{ $course->course_code }}
                 <div class="text-center">
                 <nav>
+                @can('update', \App\Models\Course::class)
                     <br>
                     <ul class="list-group list-group-horizontal " style="display: inline-flex;">
                         <li class="list-group-item">
@@ -17,6 +18,7 @@
                         <a href="{{ route('course-delete',['course' => $course->course_code,]) }}">Delete</a>
                         </li>
                     </ul>
+                @endcan
                 </nav>
                 </div>
                 
