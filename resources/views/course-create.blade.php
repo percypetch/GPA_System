@@ -50,7 +50,7 @@
         </div>
         <div class="form-floating">
                 <textarea name="descriptions" class="form-control" placeholder="Course descriptions." 
-                id="floatingTextarea2" style="height: 100px">{{ old('descriptions') }}</textarea>
+                id="floatingTextarea2" style="height: 100px" required>{{ old('descriptions') }}</textarea>
         </div><br>
         <div class="form-group row mb-0 justify-content-center">
                  <button type="submit" class="btn btn-success">Submit</button>&nbsp
