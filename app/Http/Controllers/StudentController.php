@@ -43,7 +43,6 @@ class StudentController extends Controller
             $course_student = DB::select("SELECT * from course_student
             join students on (course_student.student_id=students.id)
             join courses on (course_student.course_id=courses.id);");
-            
 
             return view('student-view', [
                 'title' => "{$this->title} : View",
@@ -128,8 +127,6 @@ class StudentController extends Controller
             return redirect()->route('student-list')
           ->with('status', "Student {$student->student_code} was deleted.");
         }  
-
-
 
         function addCourseForm(Request $request, $studentCode) {
             $this->authorize('update',Student::class);
