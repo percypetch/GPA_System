@@ -67,6 +67,7 @@
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Credit</th>
+                            <th scope="col"></th>
                             @can('update', \App\Models\Student::class)
                             <th scope="col">&nbsp</th>
                             @endcan
@@ -74,8 +75,6 @@
                         </thead>
 
                         @foreach($courses as $row)
-                        @foreach($course_student as $num)
-                        @if($student->student_code == $num->student_code and $row->course_code == $num->course_code)
                         <tbody>
                             <tr>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
@@ -83,19 +82,14 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
-                            </td>
                             @can('update', \App\Models\Student::class)
                             <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}">Remove</a></td>
                             @endcan
                             </tr>
-                        @endif
-                        @endforeach
                         @endforeach  
-                        
                         </form>
                         </tbody>
                     </table>
-
                     
                 </div>
             </div>
