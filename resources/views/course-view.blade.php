@@ -49,6 +49,7 @@
                     Credit :: {{ $course->credit }} <br>
                     Description :: {{ $course->descriptions }} <br>
 
+                    @can('update', \App\Models\Course::class)
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                     <table class="table text-center">
                         <thead>
@@ -73,7 +74,8 @@
                         @endforeach  
                         </tbody>
                     </table>
-
+                    @endcan
+                    
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                     <table class="table text-center">
                         <thead>

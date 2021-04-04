@@ -60,10 +60,11 @@
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Number of Students</th>
                             @can('update', \App\Models\Teacher::class)
+                            <th scope="col">Number of Students</th>
                             <th scope="col">&nbsp</th>
                             @endcan
+                            
                             </tr>
                         </thead>
                         @foreach($courses as $row)
@@ -73,7 +74,7 @@
                                 {{ $row->course_code }}</a></td>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
-                                
+                            @can('update', \App\Models\Course::class)   
                             <td>{{ $row->students_count }}</td>
                             <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}">Remove</a></td>
                             @endcan
