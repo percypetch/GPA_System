@@ -6,6 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\Models\Student;
 use App\Models\Course;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -39,21 +40,13 @@ class StudentController extends Controller
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $student->courses()->orderBy('course_code');
-           /* $term = (key_exists('term', $data))? $data['term'] : '';
-    
-            foreach(preg_split('/\s+/', $term) as $word) {
-                $query->where(function($innerQuery) use ($word) {
-                    return $innerQuery
-                        ->where('course_code', 'LIKE', "%{$word}%")
-                        ->orWhere('course_name', 'LIKE', "%{$word}%")
-                        ->orWhere('credit', 'LIKE', "%{$word}%");
-                        });
-            }*/
+            $course_student = DB::table('course_student')->where('student_id', 1)->get();
+
             return view('student-view', [
                 'title' => "{$this->title} : View",
                 'student' => $student,
-                //'term' => $term,
-                'courses' => $query->paginate(5),
+                'courses' => $query->paginate(10),
+                'course_student' => $course_student,
             ]);
             }
 
