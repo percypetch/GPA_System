@@ -34,9 +34,9 @@
                     <!-- Left Side Of Navbar -->
                     
                         <ul class="navbar-nav mr-auto">
-
+                        @can('update', \App\Models\Student::class)
                             <li><a href="/student"><span class="text-light">Student</span></a>&nbsp</li> 
-
+                        @endcan
 
                             <li><a href="/teacher"><span class="text-light">Teacher</span></a>&nbsp</li> 
 

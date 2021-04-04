@@ -18,6 +18,7 @@ class StudentController extends Controller
     }
 
     function list(Request $request) {
+        $this->authorize('update',Student::class);
         $data = $request->getQueryParams();
         $query = Student::orderBy('student_code');//->withCount('shops');
         $term = (key_exists('term', $data))? $data['term'] : '';
@@ -45,6 +46,7 @@ class StudentController extends Controller
         }
 
         function showChart(Request $request){
+            $this->authorize('update',Student::class);
             $tbl = Student::withCount('courses')->get();
             $st = Student::withCount('courses')->pluck('courses_count', 'student_name');
             $chart = new StudentChart;
@@ -57,6 +59,7 @@ class StudentController extends Controller
         }
 
         function show(Request $request,$studentCode=0,$coursesCode=0) {
+            $this->authorize('update',Student::class);
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $data = $request->getQueryParams();
             $query = $student->courses()->orderBy('course_code');
