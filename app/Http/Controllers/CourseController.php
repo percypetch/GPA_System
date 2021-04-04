@@ -12,7 +12,7 @@ class CourseController extends Controller
 
     function list(Request $request) {
         $data = $request->getQueryParams();
-        $query = Course::orderBy('course_code');//->withCount('shops');
+        $query = Course::orderBy('course_code')->withCount('students');
         $term = (key_exists('term', $data))? $data['term'] : '';
 
         foreach(preg_split('/\s+/', $term) as $word) {

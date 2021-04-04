@@ -63,7 +63,7 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
-                            <td>$Number of Students</td>
+                            <td>{{ $row->students_count }}</td>
                             </tr>
                         @endforeach  
                         </tbody>
