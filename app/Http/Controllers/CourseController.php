@@ -25,7 +25,6 @@ class CourseController extends Controller
                 });
             }
         
-    
         return view('course-list', [
             'term' => $term,
             'title' => "{$this->title} : List",
@@ -61,6 +60,7 @@ class CourseController extends Controller
 
         ]);
         }
+
     function createForm() {
         $this->authorize('update',Student::class);
         $course = Course::orderBy('course_code');
@@ -83,7 +83,7 @@ class CourseController extends Controller
             ->with('status', "Course {$course->course_code} was created.");
             
             }catch(\Exception $excp){
-                return back()->withInput()->withErrors([
+                return back()->withInput()->with('error', "Duplicated 'Code' number. Please use another number.");([
                 'input' => $excp->getMessage(),
               ]);
             }
@@ -113,7 +113,7 @@ class CourseController extends Controller
             } 
                 catch(\Exception $excp) 
         {
-            return back()->withInput()->withErrors([
+            return back()->withInput()->with('error', "Duplicated 'Code' number. Please use another number.");([
             'input' => $excp->getMessage(),
                 ]);
         }
