@@ -103,13 +103,28 @@
                             </tr>
                         </thead>
                         @foreach($courses as $row)
+                        @foreach($course_student as $num)
+                        @if($student->student_code == $row->student_code)
                         <tbody>
                             <tr>
                             <td>  {{ $row->course_code }} </td>
                             <td>  {{ $row->course_name }} </td>
                             <td>  </td>
-                            <form action="{{ route('student-view', ['student' => $student->student_code]) }}" method="get">
+                            
                             <td>
+                            {{$num->grade}}
+                            </td>
+                        </form>
+                            @can('update', \App\Models\Student::class)
+                            <td>Remove</td>
+                            @endcan
+                            </tr>
+                        @endif
+                        @endforeach
+                        @endforeach  
+                        </tbody>
+                    </table>
+                    <form action="{{ route('student-view', ['student' => $student->student_code]) }}" method="get">
                                 <select id="student_year" name="student_year">
                                     <option value=NULL> </option> 
                                     <option value="4">A</option>
@@ -121,18 +136,9 @@
                                     <option value="1">D</option>
                                     <option value="0">F</option>    
                                 </select>
-                            </td>
-                        </form>
-                            @can('update', \App\Models\Student::class)
-                            <td>Remove</td>
-                            @endcan
-                            </tr>
-                        @endforeach  
-                        </tbody>
-                    </table>
-                    @foreach($course_student as $row)
-                        {{ $row->student_id }} {{ $row->course_id }} <br>
-                    @endforeach 
+
+                         
+
                     GPA ::{{ $student->student_gpa }}
                 </div>
             </div>
