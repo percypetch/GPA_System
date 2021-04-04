@@ -5,8 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">
-                <button><a href="{{ route('student-view', ['student' => $student->student_code,]) }}">< Back</a></button>
-                <br />{{$title}}
+{{$title}}
                 </div>
 
                 <div class="card-body">
@@ -31,53 +30,19 @@
 
                     <form action="{{ route('student-update',['student' => $student->student_code,]) }}" method="post">
         @csrf
-
-        <table class="tablecenter normal alignRight">
-        <tr>
-            <td>
-                <span class=""><b>Code</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="student_code" size="10" value="{{ old('student_code')??$student->student_code }}" require>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>Name</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="student_name" size="50" value="{{ old('student_name')??$student->student_name }}" require>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>Phone</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="student_phone" size="50" value="{{ old('student_phone')??$student->student_phone }}">
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>Year</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <select id="student_year" name="student_year" > 
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
+                <input type="text" name="student_code" size="10" class="form-control" value="{{ old('student_code')??$student->student_code }}" require>
+                </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" >Name</span>
+                <input type="text" name="student_name" size="50" class="form-control" value="{{ old('student_name')??$student->student_name }}" require>
+                </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                <input type="text" name="student_phone" class="form-control" size="50" value="{{ old('student_phone')??$student->student_phone }}">
+                <span class="input-group-text">Year</span>
+                <select id="student_year" name="student_year" class="form-control" style="width:10px;">
                 @for($i=1 ; $i<=4 ; $i++)
                     @if(old('student_year') == $i)
                         <option selected value="{{ $i }}">  
@@ -94,53 +59,32 @@
                     @endif
                 @endfor
                 </select>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>Gender</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
+                </div>
+        <div class="input-group mb-3" style="width: 250px;">
+                <span class="input-group-text">Gender</span>
+                <div class="form-control">
             @if(old('student_gender')=='Male')
                 <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
-                <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"> Female</input>
             @elseif(old('student_gender')=='Female')
                 <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
-                <input type="radio" id="student_gender" name="student_gender" value="Female"checked>Female</input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"checked> Female</input>
             @elseif($student->student_gender=='Male' )
                 <input type="radio" id="student_gender" name="student_gender" value="Male" checked> Male </input>
-                <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"> Female</input>
             @elseif($student->student_gender=='Female')
                 <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
-                <input type="radio" id="student_gender" name="student_gender" value="Female"checked>Female</input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"checked> Female</input>
             @else
             <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
-                <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+                <input type="radio" id="student_gender" name="student_gender" value="Female"> Female</input>
             @endif
-            </td>
-        </tr>
-
-        
-        <tr>
-            <td>
-
-
-
-            </td>
-            <td>
-
-            </td>
-            <td class="text-center">
-            <input type="submit">
-            </td>
-        </tr>
-        </table>
+            </div>
+            </div>
+        <div class="form-group row mb-0 justify-content-center">
+                 <button type="submit" class="btn btn-warning">Update</button>&nbsp
+         </div>
     </form>
-    </main>
                     
                 </div>
             </div>
