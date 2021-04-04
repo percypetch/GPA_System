@@ -31,7 +31,6 @@
 
     <form action="{{ route('course-update',['course' => $course->course_code,]) }}" method="post">
         @csrf
-        @csrf
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
                 <input type="text" name="course_code" size="10" class="form-control" value="{{ old('course_code')?? $course->course_code }}" required>

@@ -121,9 +121,20 @@ class CourseController extends Controller
 
     function delete($courseCode) {
         $this->authorize('update',Course::class);
-        $course = Course::where('course_code', $courseCode)->firstOrFail();
-        $course->delete();
-        return redirect()->route('course-list')->with('status', "Course {$course->course_code} was deleted.");
+       
+        try{
+            $course = Course::where('course_code', $courseCode)->firstOrFail();
+            $course->delete();
+            
+        
+            return redirect()->route('course-list')
+            ->with('status', "Course {$course->course_code} was deleted.");
+            
+            }catch(\Exception $excp){
+                return back()->withInput()->with('error', "Course {$course->course_code} can not delete, because there are students or teachers in this course.");([
+                'input' => $excp->getMessage(),
+              ]);
+            }
     } 
 
 }

@@ -118,11 +118,10 @@ class TeacherController extends Controller
     
              catch(\Exception $excp) 
              {
-                return back()->withInput()->withErrors([
+                return back()->withInput()->with('error', "Duplicated 'Code' number. Please use another number.");([
                 'input' => $excp->getMessage(),
                 ]);
             }
-    
           }
     
         function delete($teacherCode) {
