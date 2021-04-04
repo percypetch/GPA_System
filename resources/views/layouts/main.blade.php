@@ -96,10 +96,18 @@
                     <span>{{ session()->get('status') }}</span>
                 </div>
                 @endif
-
-                @error('input')
-                    <div style="color:red;">{{ $message }}</div>
-                @enderror
+                <div style="display: block;
+width: 800px;
+margin-left:auto;
+margin-right:auto;">
+                    @error('input')
+                    <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>Duplicated 'Code' number. Please use another number.</strong>
+                        </div>
+                    @enderror
+                </div>
+                
                 @yield('content')
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js" charset="utf-8"></script>
