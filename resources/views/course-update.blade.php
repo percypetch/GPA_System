@@ -34,12 +34,11 @@
         @csrf
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
-                <input type="text" name="course_code" size="10" value="{{ old('course_code')?? $course->course_code }}" required>
-                <input type="text" name="course_code" size="10" value="{{ old('course_code') }}" class="form-control" required>
+                <input type="text" name="course_code" size="10" class="form-control" value="{{ old('course_code')?? $course->course_code }}" required>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-            <input type="text" name="course_name" size="50" value="{{ old('course_name') }}" class="form-control" required>
+            <input type="text" name="course_name" size="50" value="{{ old('course_name')?? $course->course_name  }}" class="form-control" required>
                 </div>
         <div class="input-group mb-3" style="width: 250px;">
                 <span class="input-group-text">Credit</span>
