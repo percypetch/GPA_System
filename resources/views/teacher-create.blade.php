@@ -44,7 +44,7 @@
          <div class="input-group mb-3" style="width: 250px;">
                 <span class="input-group-text">Gender</span>
                 <div class="form-control">
-                    <input type="radio" id="teacher_gender" name="teacher_gender" value="Male"> Male </input>
+                    <input type="radio" id="teacher_gender" name="teacher_gender" value="Male" checked> Male </input>
                     <input type="radio" id="teacher_gender" name="teacher_gender" value="Female"> Female</input>
                 </div>
             </div>
