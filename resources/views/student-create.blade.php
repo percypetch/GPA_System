@@ -60,7 +60,7 @@
                 <span class="input-group-text">Gender</span>
             <span class="form-control">
             <input type="radio" id="student_gender" name="student_gender" value="Male" > Male </input>
-            <input type="radio" id="student_gender" name="student_gender" value="Female">Female</input>
+            <input type="radio" id="student_gender" name="student_gender" value="Female"> Female</input>
             </span>
         </div>
         <div class="form-group row mb-0 justify-content-center">
