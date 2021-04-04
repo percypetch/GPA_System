@@ -63,18 +63,18 @@
                             </tr>
                         </thead>
                         @foreach($courses as $row)
+                        @foreach($cal_stu as $num)
                         <tbody>
                             <tr>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_code }}</a></td>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
-                            <td>{{ $row->stu_num }}</td>
+                                
+                            <td>{{ $num->stu_num }}</td>
                             <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}">Remove</a></td>
                             </tr>
                         @endforeach
-                        @foreach($cal_stu as $row)
-                        {{ $row->stu_num }}
                         @endforeach
                         </tbody>
                     </table>
