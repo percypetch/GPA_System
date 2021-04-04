@@ -44,8 +44,11 @@
                     @endif
 
                     <div class="text-center">
-                    <form action="{{ route('teacher-list') }}" method="get">
-                    <label><b>Search </b><input type="text" name="term" value="{{ $term }}" /></label>
+                    <form action="{{ route('student-list') }}" method="get" >
+                    <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+                    <input type="text" name="term" value="{{ $term }} " class="form-control" placeholder="Search" />
+                    </div>
                     </form>
                     </div>
 
