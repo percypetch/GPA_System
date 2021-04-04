@@ -5,7 +5,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">
-                    {{$title}}
+                <button><a href="{{ route('course-view', ['course' => $course->course_code,]) }}">< Back</a></button>
+                <br />{{$title}}
                 </div>
 
                 <div class="card-body">

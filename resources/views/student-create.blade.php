@@ -4,7 +4,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header ">{{$title}}
+                <div class="card-header ">
+                <button><a href="/student">< Back</a></button>
+                <br />{{$title}}
                 </div>
 
                 <div class="card-body">
