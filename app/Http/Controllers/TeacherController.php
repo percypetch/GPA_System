@@ -39,15 +39,12 @@ class TeacherController extends Controller
         function show(Request $request,$teacherCode=0,$coursesCode=0) {
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $data = $request->getQueryParams();
-            $query = $teacher->courses()->orderBy('course_code');
-            $cal_stu = DB::select("SELECT count(course_student.student_id) as 'stu_num'
-                                    from course_student group by course_student.course_id");
+            $query = $teacher->courses()->orderBy('id')->withCount('students');
             
             return view('teacher-view', [
                 'title' => "{$this->title} : View",
                 'teacher' => $teacher,
                 'courses' => $query->paginate(5),
-                'cal_stu' => $cal_stu,
             ]);
             }
 

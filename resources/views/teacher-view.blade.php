@@ -73,14 +73,11 @@
                                 {{ $row->course_code }}</a></td>
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
-                            <td>{{ $row->stu_num }}</td>
-                            @can('update', \App\Models\Teacher::class)
+                                
+                            <td>{{ $row->students_count }}</td>
                             <td><a href="{{ route('teacher-remove-course', ['teacher' => $teacher->teacher_code,'course' => $row->course_code,]) }}">Remove</a></td>
                             @endcan
                             </tr>
-                        @endforeach
-                        @foreach($cal_stu as $row)
-                        {{ $row->stu_num }}
                         @endforeach
                         </tbody>
                     </table>
