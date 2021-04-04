@@ -42,14 +42,13 @@
         <div class="input-group mb-3" style="width: 250px;">
                 <span class="input-group-text">Credit</span>
                 <select id="credit" name="credit" class="form-control" style="width:10px;">
-                <select id="student_year" name="student_year" > 
-                @for($i=1 ; $i<=4 ; $i++)
-                    @if(old('student_year') == $i)
+                @for($i=1 ; $i<=3 ; $i++)
+                    @if(old('credit') == $i)
                         <option selected value="{{ $i }}">  
                         {{ $i }}
                         </option>              
-                    @elseif($student->student_year == $i && old('student_year') == '')
-                        <option selected value="{{ $i }}">  
+                    @elseif($course->credit == $i && old('credit') == '')
+                        <option selected value="{{ $i }}">
                         {{ $i }}
                         </option>
                     @else
@@ -59,13 +58,12 @@
                     @endif
                 @endfor
                 </select>
-                    </select>
         </div>
         <div class="form-floating">
                 <textarea name="descriptions"class="form-control" placeholder="Course descriptions." id="floatingTextarea2" style="height: 100px">{{ old('descriptions')?? $course->descriptions }}</textarea>
                 </div><br>
         <div class="form-group row mb-0 justify-content-center">
-                 <button type="submit" class="btn btn-warning">Update</button>&nbsp
+                 <button type="submit" class="btn btn-success">Submit</button>&nbsp
         </div>
     </form>
     </main>
