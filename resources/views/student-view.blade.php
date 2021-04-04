@@ -84,7 +84,24 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
-                            <td>{{$num->course_id}}</td>
+                            <td>
+                            <form action="{{ route('student-view', ['student' => $student->student_code]) }}" method="get">
+                                <select id="grade" name="grade">
+                                @for($i=4 ; $i>=0 ; $i=$i-0.5)
+                                    @if($num->grade ==  $i)
+                                        <option value="{{ $i }}" selected>  
+                                        {{ $i }}
+                                        </option>
+                                    @else
+                                        <option value=0>  
+                                        {{ $i }}
+                                        </option>
+                                    @endif
+                                @endfor  
+                                </select>
+
+                            
+                            </td>
                             @can('update', \App\Models\Student::class)
                             <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}">Remove</a></td>
                             @endcan
@@ -92,22 +109,10 @@
                         @endif
                         @endforeach
                         @endforeach  
-
+                        <tr><td></td><td></td><td></td><td><button type="submit">Update grade</button></td><td></td></tr>
+                        </form>
                         </tbody>
                     </table>
-
-                    <form action="{{ route('student-view', ['student' => $student->student_code]) }}" method="get">
-                                <select id="student_year" name="student_year">
-                                    <option value=NULL> </option> 
-                                    <option value="4">A</option>
-                                    <option value="3.5">B+</option>
-                                    <option value="3">B</option>
-                                    <option value="2.5">C+</option>
-                                    <option value="2">C</option>
-                                    <option value="1.5">D+</option>
-                                    <option value="1">D</option>
-                                    <option value="0">F</option>    
-                                </select>
 
                     GPA ::{{ $student->student_gpa }}
                 </div>
