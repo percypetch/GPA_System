@@ -31,18 +31,10 @@
 
                     <form action="{{ route('teacher-update',['teacher' => $teacher->teacher_code,]) }}" method="post">
         @csrf
-
-        <table class="tablecenter normal alignRight">
-        <tr>
-            <td>
-                <span class=""><b>Code</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="teacher_code" size="10" value="{{ old('teacher_code')??$teacher->teacher_code }}" require>
-            </td>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
+                <input type="text" name="teacher_code" size="10" value="{{ old('teacher_code')??$teacher->teacher_code }}" class="form-control" require>
+        </div>
         </tr>
 
         <tr>
