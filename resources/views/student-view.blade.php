@@ -57,6 +57,8 @@
 
 
                     
+                    
+                    
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                     <table class="table text-center">
                         <thead>
@@ -79,7 +81,6 @@
                             <td> <a href="{{ route('course-view', ['course' => $row->course_code,]) }}">
                                 {{ $row->course_name }}</a></td>
                             <td>{{ $row->credit }}</td>
-                            <td>$grade</td>
                             @can('update', \App\Models\Student::class)
                             <td><a href="{{ route('student-remove-course', ['student' => $student->student_code,'course' => $row->course_code,]) }}">Remove</a></td>
                             @endcan
@@ -87,6 +88,51 @@
                         @endforeach  
                         </tbody>
                     </table>
+
+                    <table class="table text-center">
+                        <thead>
+                        Grade
+                            <tr>
+                            <th scope="col">C_id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">S_id</th>
+                            <th scope="col">Grade</th>
+                            @can('update', \App\Models\Student::class)
+                            <th scope="col">&nbsp</th>
+                            @endcan
+                            </tr>
+                        </thead>
+                        @foreach($courses as $row)
+                        <tbody>
+                            <tr>
+                            <td>  {{ $row->course_code }} </td>
+                            <td>  {{ $row->course_name }} </td>
+                            <td>  </td>
+                            <form action="{{ route('student-view', ['student' => $student->student_code]) }}" method="get">
+                            <td>
+                                <select id="student_year" name="student_year">
+                                    <option value=NULL> </option> 
+                                    <option value="4">A</option>
+                                    <option value="3.5">B+</option>
+                                    <option value="3">B</option>
+                                    <option value="2.5">C+</option>
+                                    <option value="2">C</option>
+                                    <option value="1.5">D+</option>
+                                    <option value="1">D</option>
+                                    <option value="0">F</option>    
+                                </select>
+                            </td>
+                        </form>
+                            @can('update', \App\Models\Student::class)
+                            <td>Remove</td>
+                            @endcan
+                            </tr>
+                        @endforeach  
+                        </tbody>
+                    </table>
+                    @foreach($course_student as $row)
+                        {{ $row->student_id }} {{ $row->course_id }} <br>
+                    @endforeach 
                     GPA ::{{ $student->student_gpa }}
                 </div>
             </div>
