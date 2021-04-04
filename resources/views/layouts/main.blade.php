@@ -53,17 +53,7 @@
 
         <main class="py-4">
 
-                <div style="display: block;
-width: 800px;
-margin-left:auto;
-margin-right:auto;">
-                    @error('input')
-                    <div class="alert alert-danger alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>    
-                            <strong>Duplicated 'Code' number. Please use another number.</strong>
-                        </div>
-                    @enderror
-                </div>
+
                 
                 @yield('content')
         </main>
