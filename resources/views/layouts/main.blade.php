@@ -43,59 +43,18 @@
 
                             <li><a href="/course"><span class="text-light">Course</span></a></li>&nbsp  
        
-                        </ul>
-                   
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                       <!--  @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                            
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
-                    <nav>
-                        <ul class="navbar-nav mr-auto">
-                            <li><span class="text-light">{{ \Auth::user()->name }}</span></li> &nbsp&nbsp&nbsp
-                            <li><a href="{{ route('logout') }}"><button type="button" class="btn btn-danger">Logout</button></a></li>
-                        </ul>
-                    </nav>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      </ul>
+      <div class="rounded float-end" style="width:100%; text-align:right;">
+        Welcome! <span class="text-success">{{ \Auth::user()->name }}</span> &nbsp&nbsp&nbsp
+        <a href="{{ route('logout') }}"><button type="button" class="btn btn-danger">Logout</button></a>
+        </div>
+    </div>
+  </div>
+</nav>
+        
 
         <main class="py-4">
-                @if(session()->has('status'))
-                <div class="status">
-                    <span>{{ session()->get('status') }}</span>
-                </div>
-                @endif
+
                 <div style="display: block;
 width: 800px;
 margin-left:auto;
