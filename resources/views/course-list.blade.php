@@ -46,7 +46,7 @@
 
                     {{ $course->withQueryString()->links() }}
 
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                             <th scope="col">Code</th>
