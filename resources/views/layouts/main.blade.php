@@ -21,81 +21,36 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('student-list') }}">
-                    <span class="text-warning">GPA System</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    
-                        <ul class="navbar-nav mr-auto">
-
-                            <li><a href="/student"><span class="text-light">Student</span></a>&nbsp</li> 
-
-
-                            <li><a href="/teacher"><span class="text-light">Teacher</span></a>&nbsp</li> 
-
-
-                            <li><a href="/course"><span class="text-light">Course</span></a></li>&nbsp  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/student">RegSystem</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/student">Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/teacher">Teacher</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/course">Course</a>
+        </li>
        
-                        </ul>
-                   
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                       <!--  @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                            
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
-                    <nav>
-                        <ul class="navbar-nav mr-auto">
-                            <li><span class="text-light">{{ \Auth::user()->name }}</span></li> &nbsp&nbsp&nbsp
-                            <li><a href="{{ route('logout') }}"><button type="button" class="btn btn-danger">Logout</button></a></li>
-                        </ul>
-                    </nav>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      </ul>
+      <div class="rounded float-end" style="width:100%; text-align:right;">
+        Welcome! <span class="text-success">{{ \Auth::user()->name }}</span> &nbsp&nbsp&nbsp
+        <a href="{{ route('logout') }}"><button type="button" class="btn btn-danger">Logout</button></a>
+        </div>
+    </div>
+  </div>
+</nav>
+        
 
         <main class="py-4">
-                @if(session()->has('status'))
-                <div class="status">
-                    <span>{{ session()->get('status') }}</span>
-                </div>
-                @endif
+
                 <div style="display: block;
 width: 800px;
 margin-left:auto;

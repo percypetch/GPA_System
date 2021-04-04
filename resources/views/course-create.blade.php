@@ -5,8 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header ">
-                <button><a href="/course">< Back</a></button>
-                <br />{{$title}}
+                    {{$title}}
                 </div>
 
                 <div class="card-body">
@@ -30,71 +29,33 @@
 
 
     <form action="{{ route('course-create') }}" method="post">
-        @csrf
-
-        <table class="tablecenter normal alignRight">
-        <tr>
-            <td>
-                <span class=""><b>*Code</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="course_code" size="10" value="{{ old('course_code') }}" required>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span class=""><b>*Name</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <input type="text" name="course_name" size="50" value="{{ old('course_name') }}" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span class=""><b>Credit</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <select id="credit" name="credit">
-                @for($i=1 ; $i<=3 ; $i++)
-                    <option value="{{ $i }}">  
-                       {{ $i }}
-                    </option>
-                @endfor
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span class=""><b>*Description</b></span>
-            </td>
-            <td>
-                <span class = "bluecolor">:: </span>
-            </td>
-            <td>
-                <textarea name="descriptions" id="" cols="30" rows="5">{{ old('descriptions') }}</textarea>
-            </td>
-        </tr>
-        
-        <tr>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td class="text-center">
-            <input type="submit">
-            </td>
-        </tr>
-        </table>
+    @csrf
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
+                <input type="text" name="course_code" size="10" value="{{ old('course_code') }}" class="form-control" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                <input type="text" name="course_name" size="50" value="{{ old('course_name') }}" class="form-control" required>
+                </div>
+        <div class="input-group mb-3" style="width: 250px;">
+                <span class="input-group-text">Credit</span>
+                    <select id="credit" name="credit" class="form-control" style="width:10px;">
+                    @for($i=1 ; $i<=3 ; $i++)
+                        <option value="{{ $i }}">  
+                        {{ $i }}
+                        </option>
+                    @endfor
+                    </select>
+        </div>
+        <div class="form-floating">
+                <textarea name="descriptions" class="form-control" placeholder="Course descriptions." 
+                id="floatingTextarea2" style="height: 100px">{{ old('descriptions') }}</textarea>
+        </div><br>
+        <div class="form-group row mb-0 justify-content-center">
+                 <button type="submit" class="btn btn-success">Submit</button>&nbsp
+                <button class="btn btn-primary rounded float-end" type="reset">Reset</button>
+        </div>
     </form>
     </main>
                     
