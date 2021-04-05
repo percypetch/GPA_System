@@ -161,16 +161,18 @@ class TeacherController extends Controller
         }
 
         function addCourse(Request $request, $teacherCode) {
+            $this->authorize('update',Teacher::class);
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $data = $request->getParsedBody();
             $teacher->courses()->attach($data['course']);
             
             return back()
-            ->with('status', "Course {$data['courseCode']} was added to Teacher {$teacher->teacher_code}.");
+            ->with('status', "Course was added to Teacher {$teacher->teacher_code}.");
             ;
         }
 
         function removeCourse($teacherCode, $courseCode) {
+            $this->authorize('update',Teacher::class);
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $course = $teacher->courses()
             ->where('course_code', $courseCode)->firstOrFail();

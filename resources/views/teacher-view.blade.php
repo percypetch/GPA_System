@@ -68,7 +68,7 @@
             <br>
                     <table class="table text-center">
                         <thead>
-                        <h5>Student in courses </h5>
+                        <h5>Course Teached </h5>
                             <tr>
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
