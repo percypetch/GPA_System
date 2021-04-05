@@ -126,11 +126,17 @@ class TeacherController extends Controller
     
         function delete($teacherCode) {
             $this->authorize('update',Teacher::class);
+            try{
             $teacher = Teacher::where('teacher_code', $teacherCode)->firstOrFail();
             $teacher->delete();
     
             return redirect()->route('teacher-list')
           ->with('status', "Teacher {$teacher->teacher_code} was deleted.");
+        }catch(\Exception $excp){
+            return back()->withInput()->with('error', "Teacher {$teacher->teacher_code} can not delete, because the teacher are in courses.");([
+            'input' => $excp->getMessage(),
+          ]);
+        }
         }
 
 

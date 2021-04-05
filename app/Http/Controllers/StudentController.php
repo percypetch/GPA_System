@@ -131,11 +131,17 @@ class StudentController extends Controller
     
         function delete($studentCode) {
             $this->authorize('update',Student::class);
+            try{
             $student = Student::where('student_code', $studentCode)->firstOrFail();
             $student->delete();
     
             return redirect()->route('student-list')
           ->with('status', "Student {$student->student_code} was deleted.");
+        }catch(\Exception $excp){
+            return back()->withInput()->with('error', "Student {$student->student_code} can not delete, because the student are in courses.");([
+            'input' => $excp->getMessage(),
+          ]);
+        }
         }  
 
         function addCourseForm(Request $request, $studentCode) {
