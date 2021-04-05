@@ -27,7 +27,8 @@ class StudentController extends Controller
                 $query->where(function($innerQuery) use ($word) {
                     return $innerQuery
                         ->where('student_code', 'LIKE', "%{$word}%")
-                        ->orWhere('student_name', 'LIKE', "%{$word}%"); 
+                        ->orWhere('student_name', 'LIKE', "%{$word}%")
+                        ->orWhere('student_year', 'LIKE', "%{$word}%");; 
                     });
                 }
                 
