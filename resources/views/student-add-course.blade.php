@@ -51,7 +51,7 @@
                             <td class="normal"  width=200px>{{ $course->credit }}</td>
                             <td class="normal"width=20px >
                                 <button type="submit" name="course" value="{{ $course->id }}" class="btn btn-info">Add</button>
-                                <input type="hidden" name="courseCode" value="{{ $course->course_code }}">
+                               <input type="hidden" name="courseCode" value="{{ $course->course_code }}">
                             </td>
                         </tr>
                     @endforeach
