@@ -109,7 +109,7 @@ class CourseController extends Controller
             $course->save();
             return redirect()->route('course-view', [
                 'course' => $course->course_code,])
-                ->with('status', "Course {$course->code} was updated.");
+                ->with('status', "Course {$course->course_code} was updated.");
             } 
                 catch(\Exception $excp) 
         {
