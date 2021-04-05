@@ -177,7 +177,7 @@ class StudentController extends Controller
             $student->courses()->attach($data['course']);
             
             return back()
-            ->with('status', "Course {$data['courseCode']} was added to Student {$student->student_code}.");
+            ->with('status', "Course was added to Student {$student->student_code}.");
             ;
         }
 
