@@ -112,7 +112,7 @@ class TeacherController extends Controller
             
                 return redirect()->route('teacher-view', [
                     'teacher' => $teacher->teacher_code,
-                ])->with('status', "Teacher {$teacher->code} was updated.");
+                ])->with('status', "Teacher {$teacher->teacher_code} was updated.");
              } 
     
              catch(\Exception $excp) 
